@@ -1,0 +1,1248 @@
+{
+  "projeto": "ecossistema_analitico_sus",
+  "tipo": "catalogo_fontes",
+  "versao": "0.1.0",
+  "fontes": [
+    {
+      "dataset_id": "tb_forma_organizacao",
+      "origem_url": "https://raw.githubusercontent.com/labx-ia-br/bd_sigtap/refs/heads/main/tb_forma_organizacao.csv",
+      "arquivo": "tb_forma_organizacao.csv",
+      "categoria": "sigtap_dimensao",
+      "descricao": "Catálogo SIGTAP de formas de organização.",
+      "granularidade": "1 linha por forma de organização.",
+      "papel_no_ecossistema": [
+        "lookup",
+        "classificacao",
+        "hierarquia_sigtap"
+      ],
+      "delimitador_inferido": ",",
+      "n_colunas": 5,
+      "n_linhas_amostradas": 200,
+      "chaves_candidatas": [
+        "co_grupo",
+        "co_sub_grupo",
+        "co_forma_organizacao",
+        "no_forma_organizacao"
+      ],
+      "campos": [
+        {
+          "nome": "co_grupo",
+          "tipo_logico_inferido": "inteiro",
+          "papeis_inferidos": [
+            "atributo"
+          ],
+          "nullable_amostral": false,
+          "exemplos": [
+            "01",
+            "02",
+            "03"
+          ]
+        },
+        {
+          "nome": "co_sub_grupo",
+          "tipo_logico_inferido": "inteiro",
+          "papeis_inferidos": [
+            "atributo"
+          ],
+          "nullable_amostral": false,
+          "exemplos": [
+            "01",
+            "02",
+            "03"
+          ]
+        },
+        {
+          "nome": "co_forma_organizacao",
+          "tipo_logico_inferido": "inteiro",
+          "papeis_inferidos": [
+            "atributo"
+          ],
+          "nullable_amostral": false,
+          "exemplos": [
+            "01",
+            "02",
+            "03"
+          ]
+        },
+        {
+          "nome": "no_forma_organizacao",
+          "tipo_logico_inferido": "texto",
+          "papeis_inferidos": [
+            "rotulo"
+          ],
+          "nullable_amostral": false,
+          "exemplos": [
+            "Educação em saúde",
+            "Saúde bucal",
+            "Visita domiciliar"
+          ]
+        },
+        {
+          "nome": "dt_competencia",
+          "tipo_logico_inferido": "inteiro",
+          "papeis_inferidos": [
+            "tempo"
+          ],
+          "nullable_amostral": false,
+          "exemplos": [
+            "202502"
+          ]
+        }
+      ],
+      "observacoes": [
+        "Metadados inferidos automaticamente a partir do cabeçalho e de amostra do CSV.",
+        "Tipos e chaves devem ser revisados manualmente antes de uso definitivo."
+      ]
+    },
+    {
+      "dataset_id": "tb_grupo",
+      "origem_url": "https://raw.githubusercontent.com/labx-ia-br/bd_sigtap/refs/heads/main/tb_grupo.csv",
+      "arquivo": "tb_grupo.csv",
+      "categoria": "sigtap_dimensao",
+      "descricao": "Catálogo SIGTAP de grupos de procedimentos.",
+      "granularidade": "1 linha por grupo.",
+      "papel_no_ecossistema": [
+        "lookup",
+        "classificacao",
+        "hierarquia_sigtap"
+      ],
+      "delimitador_inferido": ",",
+      "n_colunas": 3,
+      "n_linhas_amostradas": 9,
+      "chaves_candidatas": [
+        "co_grupo",
+        "no_grupo"
+      ],
+      "campos": [
+        {
+          "nome": "co_grupo",
+          "tipo_logico_inferido": "inteiro",
+          "papeis_inferidos": [
+            "atributo"
+          ],
+          "nullable_amostral": false,
+          "exemplos": [
+            "01",
+            "02",
+            "03"
+          ]
+        },
+        {
+          "nome": "no_grupo",
+          "tipo_logico_inferido": "texto",
+          "papeis_inferidos": [
+            "rotulo"
+          ],
+          "nullable_amostral": false,
+          "exemplos": [
+            "Ações de promoção e prevenção em saúde",
+            "Procedimentos com finalidade diagnóstica",
+            "Procedimentos clínicos"
+          ]
+        },
+        {
+          "nome": "dt_competencia",
+          "tipo_logico_inferido": "inteiro",
+          "papeis_inferidos": [
+            "tempo"
+          ],
+          "nullable_amostral": false,
+          "exemplos": [
+            "202502"
+          ]
+        }
+      ],
+      "observacoes": [
+        "Metadados inferidos automaticamente a partir do cabeçalho e de amostra do CSV.",
+        "Tipos e chaves devem ser revisados manualmente antes de uso definitivo."
+      ]
+    },
+    {
+      "dataset_id": "tb_procedimento",
+      "origem_url": "https://raw.githubusercontent.com/labx-ia-br/bd_sigtap/refs/heads/main/tb_procedimento.csv",
+      "arquivo": "tb_procedimento.csv",
+      "categoria": "sigtap_dimensao",
+      "descricao": "Catálogo SIGTAP de procedimentos.",
+      "granularidade": "1 linha por procedimento.",
+      "papel_no_ecossistema": [
+        "lookup",
+        "classificacao",
+        "enriquecimento_semantico"
+      ],
+      "delimitador_inferido": ",",
+      "n_colunas": 19,
+      "n_linhas_amostradas": 200,
+      "chaves_candidatas": [
+        "co_procedimento",
+        "no_procedimento",
+        "tp_complexidade",
+        "vl_idade_minima",
+        "vl_idade_maxima"
+      ],
+      "campos": [
+        {
+          "nome": "co_procedimento",
+          "tipo_logico_inferido": "inteiro",
+          "papeis_inferidos": [
+            "procedimento"
+          ],
+          "nullable_amostral": false,
+          "exemplos": [
+            "0101010010",
+            "0101010028",
+            "0101010036"
+          ]
+        },
+        {
+          "nome": "no_procedimento",
+          "tipo_logico_inferido": "texto",
+          "papeis_inferidos": [
+            "procedimento",
+            "rotulo"
+          ],
+          "nullable_amostral": false,
+          "exemplos": [
+            "ATIVIDADE EDUCATIVA / ORIENTAÇÃO EM GRUPO NA ATENÇÃO PRIMÁRIA",
+            "ATIVIDADE EDUCATIVA / ORIENTAÇÃO EM GRUPO NA ATENÇÃO ESPECIALIZADA",
+            "PRÁTICA CORPORAL / ATIVIDADE FÍSICA EM GRUPO"
+          ]
+        },
+        {
+          "nome": "tp_complexidade",
+          "tipo_logico_inferido": "inteiro",
+          "papeis_inferidos": [
+            "atributo"
+          ],
+          "nullable_amostral": false,
+          "exemplos": [
+            "1",
+            "2",
+            "0"
+          ]
+        },
+        {
+          "nome": "tp_sexo",
+          "tipo_logico_inferido": "codigo_curto",
+          "papeis_inferidos": [
+            "atributo"
+          ],
+          "nullable_amostral": false,
+          "exemplos": [
+            "N",
+            "I"
+          ]
+        },
+        {
+          "nome": "qt_maxima_execucao",
+          "tipo_logico_inferido": "inteiro",
+          "papeis_inferidos": [
+            "medida"
+          ],
+          "nullable_amostral": false,
+          "exemplos": [
+            "9999",
+            "1",
+            "2"
+          ]
+        },
+        {
+          "nome": "qt_dias_permanencia",
+          "tipo_logico_inferido": "inteiro",
+          "papeis_inferidos": [
+            "medida"
+          ],
+          "nullable_amostral": false,
+          "exemplos": [
+            "9999",
+            "2",
+            "1"
+          ]
+        },
+        {
+          "nome": "qt_pontos",
+          "tipo_logico_inferido": "inteiro",
+          "papeis_inferidos": [
+            "medida"
+          ],
+          "nullable_amostral": false,
+          "exemplos": [
+            "0",
+            "88",
+            "48"
+          ]
+        },
+        {
+          "nome": "vl_idade_minima",
+          "tipo_logico_inferido": "inteiro",
+          "papeis_inferidos": [
+            "identificador",
+            "medida"
+          ],
+          "nullable_amostral": false,
+          "exemplos": [
+            "9999",
+            "84",
+            "72"
+          ]
+        },
+        {
+          "nome": "vl_idade_maxima",
+          "tipo_logico_inferido": "inteiro",
+          "papeis_inferidos": [
+            "identificador",
+            "medida"
+          ],
+          "nullable_amostral": false,
+          "exemplos": [
+            "9999",
+            "1571",
+            "599"
+          ]
+        },
+        {
+          "nome": "vl_sh",
+          "tipo_logico_inferido": "inteiro",
+          "papeis_inferidos": [
+            "medida"
+          ],
+          "nullable_amostral": false,
+          "exemplos": [
+            "0",
+            "220",
+            "12370"
+          ]
+        },
+        {
+          "nome": "vl_sa",
+          "tipo_logico_inferido": "inteiro",
+          "papeis_inferidos": [
+            "medida"
+          ],
+          "nullable_amostral": false,
+          "exemplos": [
+            "0",
+            "270",
+            "300"
+          ]
+        },
+        {
+          "nome": "vl_sp",
+          "tipo_logico_inferido": "inteiro",
+          "papeis_inferidos": [
+            "medida"
+          ],
+          "nullable_amostral": false,
+          "exemplos": [
+            "0",
+            "7686",
+            "22680"
+          ]
+        },
+        {
+          "nome": "co_financiamento",
+          "tipo_logico_inferido": "inteiro",
+          "papeis_inferidos": [
+            "atributo"
+          ],
+          "nullable_amostral": false,
+          "exemplos": [
+            "01",
+            "06",
+            "07"
+          ]
+        },
+        {
+          "nome": "co_rubrica",
+          "tipo_logico_inferido": "desconhecido",
+          "papeis_inferidos": [
+            "atributo"
+          ],
+          "nullable_amostral": true,
+          "exemplos": []
+        },
+        {
+          "nome": "qt_tempo_permanencia",
+          "tipo_logico_inferido": "inteiro",
+          "papeis_inferidos": [
+            "medida"
+          ],
+          "nullable_amostral": false,
+          "exemplos": [
+            "9999"
+          ]
+        },
+        {
+          "nome": "dt_competencia",
+          "tipo_logico_inferido": "inteiro",
+          "papeis_inferidos": [
+            "tempo"
+          ],
+          "nullable_amostral": false,
+          "exemplos": [
+            "202502"
+          ]
+        },
+        {
+          "nome": "co_grupo",
+          "tipo_logico_inferido": "inteiro",
+          "papeis_inferidos": [
+            "atributo"
+          ],
+          "nullable_amostral": false,
+          "exemplos": [
+            "01",
+            "02"
+          ]
+        },
+        {
+          "nome": "co_forma_organizacao",
+          "tipo_logico_inferido": "inteiro",
+          "papeis_inferidos": [
+            "atributo"
+          ],
+          "nullable_amostral": false,
+          "exemplos": [
+            "01",
+            "02",
+            "03"
+          ]
+        },
+        {
+          "nome": "co_sub_grupo",
+          "tipo_logico_inferido": "inteiro",
+          "papeis_inferidos": [
+            "atributo"
+          ],
+          "nullable_amostral": false,
+          "exemplos": [
+            "01",
+            "02"
+          ]
+        }
+      ],
+      "observacoes": [
+        "Metadados inferidos automaticamente a partir do cabeçalho e de amostra do CSV.",
+        "Tipos e chaves devem ser revisados manualmente antes de uso definitivo."
+      ]
+    },
+    {
+      "dataset_id": "tb_sub_grupo",
+      "origem_url": "https://raw.githubusercontent.com/labx-ia-br/bd_sigtap/refs/heads/main/tb_sub_grupo.csv",
+      "arquivo": "tb_sub_grupo.csv",
+      "categoria": "sigtap_dimensao",
+      "descricao": "Catálogo SIGTAP de subgrupos de procedimentos.",
+      "granularidade": "1 linha por subgrupo.",
+      "papel_no_ecossistema": [
+        "lookup",
+        "classificacao",
+        "hierarquia_sigtap"
+      ],
+      "delimitador_inferido": ",",
+      "n_colunas": 4,
+      "n_linhas_amostradas": 67,
+      "chaves_candidatas": [
+        "co_grupo",
+        "co_sub_grupo",
+        "no_sub_grupo"
+      ],
+      "campos": [
+        {
+          "nome": "co_grupo",
+          "tipo_logico_inferido": "inteiro",
+          "papeis_inferidos": [
+            "atributo"
+          ],
+          "nullable_amostral": false,
+          "exemplos": [
+            "01",
+            "02",
+            "03"
+          ]
+        },
+        {
+          "nome": "co_sub_grupo",
+          "tipo_logico_inferido": "inteiro",
+          "papeis_inferidos": [
+            "atributo"
+          ],
+          "nullable_amostral": false,
+          "exemplos": [
+            "01",
+            "02",
+            "03"
+          ]
+        },
+        {
+          "nome": "no_sub_grupo",
+          "tipo_logico_inferido": "texto",
+          "papeis_inferidos": [
+            "rotulo"
+          ],
+          "nullable_amostral": false,
+          "exemplos": [
+            "Ações coletivas/individuais em saúde",
+            "Vigilância em saúde",
+            "Coleta de material"
+          ]
+        },
+        {
+          "nome": "dt_competencia",
+          "tipo_logico_inferido": "inteiro",
+          "papeis_inferidos": [
+            "tempo"
+          ],
+          "nullable_amostral": false,
+          "exemplos": [
+            "202502"
+          ]
+        }
+      ],
+      "observacoes": [
+        "Metadados inferidos automaticamente a partir do cabeçalho e de amostra do CSV.",
+        "Tipos e chaves devem ser revisados manualmente antes de uso definitivo."
+      ]
+    },
+    {
+      "dataset_id": "td_bdsus_mapa_atributos",
+      "origem_url": "https://raw.githubusercontent.com/labx-ia-br/bd_geral/refs/heads/main/td_bdsus_mapa_atributos.csv",
+      "arquivo": "td_bdsus_mapa_atributos.csv",
+      "categoria": "metadado_mapeamento",
+      "descricao": "Mapa de atributos para compatibilização semântica entre schemas, tabelas e campos.",
+      "granularidade": "1 linha por atributo mapeado.",
+      "papel_no_ecossistema": [
+        "metadado",
+        "compatibilizacao",
+        "catalogo_semantico"
+      ],
+      "delimitador_inferido": ",",
+      "n_colunas": 32,
+      "n_linhas_amostradas": 83,
+      "chaves_candidatas": [
+        "municipio_residencia",
+        "procedimento",
+        "quantidade",
+        "idade",
+        "complexidade"
+      ],
+      "campos": [
+        {
+          "nome": "sg_sistema",
+          "tipo_logico_inferido": "texto",
+          "papeis_inferidos": [
+            "atributo"
+          ],
+          "nullable_amostral": false,
+          "exemplos": [
+            "CIH",
+            "CIHA",
+            "PCE"
+          ]
+        },
+        {
+          "nome": "sg_subsistema",
+          "tipo_logico_inferido": "texto",
+          "papeis_inferidos": [
+            "atributo"
+          ],
+          "nullable_amostral": false,
+          "exemplos": [
+            "CR",
+            "CIHA",
+            "PCE"
+          ]
+        },
+        {
+          "nome": "diagnostico",
+          "tipo_logico_inferido": "texto",
+          "papeis_inferidos": [
+            "diagnostico"
+          ],
+          "nullable_amostral": true,
+          "exemplos": [
+            "diag_princ;diag_secun",
+            "ap_cidcas;ap_cidpri;ap_cidsec",
+            "ap_cidcas;ap_cidpri;ap_cidsec;aq_cid10;aq_cidini1;aq_cidini2;aq_cidini3"
+          ]
+        },
+        {
+          "nome": "territorio",
+          "tipo_logico_inferido": "texto",
+          "papeis_inferidos": [
+            "territorio"
+          ],
+          "nullable_amostral": true,
+          "exemplos": [
+            "munic_mov;munic_res",
+            "sg_uf",
+            "munic"
+          ]
+        },
+        {
+          "nome": "municipio_residencia",
+          "tipo_logico_inferido": "texto",
+          "papeis_inferidos": [
+            "territorio"
+          ],
+          "nullable_amostral": true,
+          "exemplos": [
+            "munic_res",
+            "codmunres;id_mn_resi;ufres",
+            "ap_munpcn"
+          ]
+        },
+        {
+          "nome": "municipio_estabelecimento",
+          "tipo_logico_inferido": "texto",
+          "papeis_inferidos": [
+            "territorio"
+          ],
+          "nullable_amostral": true,
+          "exemplos": [
+            "munic_mov",
+            "ap_ufmun",
+            "ufmun"
+          ]
+        },
+        {
+          "nome": "estabelecimento",
+          "tipo_logico_inferido": "texto",
+          "papeis_inferidos": [
+            "atributo"
+          ],
+          "nullable_amostral": true,
+          "exemplos": [
+            "cnes",
+            "coduni",
+            "pa_coduni"
+          ]
+        },
+        {
+          "nome": "procedimento",
+          "tipo_logico_inferido": "texto",
+          "papeis_inferidos": [
+            "procedimento"
+          ],
+          "nullable_amostral": true,
+          "exemplos": [
+            "proc_rea",
+            "ap_pripal",
+            "proc_id"
+          ]
+        },
+        {
+          "nome": "quantidade",
+          "tipo_logico_inferido": "texto",
+          "papeis_inferidos": [
+            "medida"
+          ],
+          "nullable_amostral": true,
+          "exemplos": [
+            "dias_perm",
+            "qt_17;qt_1a4;qt_5a16;qt_anc;qt_asc;qt_atrat;qt_aus;qt_bgla;qt_bstr;qt_bten;qt_cap;qt_ci;qt_ev;qt_exam;qt_hn;qt_nrecol;qt_out;qt_out1;qt_pesq;qt_pop;qt_pos;qt_posbgla;qt_posbstr;qt_posbten;qt_posout;qt_pred;qt_rec;qt_se;qt_tae;qt_trat;qt_tt",
+            "qt_dose"
+          ]
+        },
+        {
+          "nome": "valor",
+          "tipo_logico_inferido": "texto",
+          "papeis_inferidos": [
+            "medida"
+          ],
+          "nullable_amostral": true,
+          "exemplos": [
+            "vl_apres;vl_aprov",
+            "pa_valapr;pa_valpro",
+            "uf_zi"
+          ]
+        },
+        {
+          "nome": "cns",
+          "tipo_logico_inferido": "texto",
+          "papeis_inferidos": [
+            "identificador"
+          ],
+          "nullable_amostral": true,
+          "exemplos": [
+            "ap_cnspcn",
+            "cns_pac",
+            "cnspcn;nu_cnspcn"
+          ]
+        },
+        {
+          "nome": "sexo",
+          "tipo_logico_inferido": "texto",
+          "papeis_inferidos": [
+            "atributo"
+          ],
+          "nullable_amostral": true,
+          "exemplos": [
+            "sexo",
+            "ap_sexo",
+            "sexopac"
+          ]
+        },
+        {
+          "nome": "idade",
+          "tipo_logico_inferido": "texto",
+          "papeis_inferidos": [
+            "atributo"
+          ],
+          "nullable_amostral": true,
+          "exemplos": [
+            "idade",
+            "ap_nuidade",
+            "idadepac"
+          ]
+        },
+        {
+          "nome": "ano",
+          "tipo_logico_inferido": "texto",
+          "papeis_inferidos": [
+            "tempo"
+          ],
+          "nullable_amostral": true,
+          "exemplos": [
+            "ano_cmpt",
+            "ano",
+            "ano_nasc;ano_not"
+          ]
+        },
+        {
+          "nome": "periodo",
+          "tipo_logico_inferido": "texto",
+          "papeis_inferidos": [
+            "tempo"
+          ],
+          "nullable_amostral": true,
+          "exemplos": [
+            "dt_inter;dt_saida;mes_cmpt",
+            "dt_atend;dt_saida;mes_cmpt",
+            "dt_comp"
+          ]
+        },
+        {
+          "nome": "raca_cor",
+          "tipo_logico_inferido": "texto",
+          "papeis_inferidos": [
+            "atributo"
+          ],
+          "nullable_amostral": true,
+          "exemplos": [
+            "racacor",
+            "ap_racacor",
+            "pa_racacor"
+          ]
+        },
+        {
+          "nome": "autorizacao",
+          "tipo_logico_inferido": "texto",
+          "papeis_inferidos": [
+            "atributo"
+          ],
+          "nullable_amostral": true,
+          "exemplos": [
+            "ab_numaih;ab_numaih2;ap_autoriz",
+            "ap_autoriz",
+            "autoriz"
+          ]
+        },
+        {
+          "nome": "complexidade",
+          "tipo_logico_inferido": "texto",
+          "papeis_inferidos": [
+            "atributo"
+          ],
+          "nullable_amostral": true,
+          "exemplos": [
+            "complex",
+            "pa_nivcpl",
+            "sp_complex"
+          ]
+        },
+        {
+          "nome": "financiamento",
+          "tipo_logico_inferido": "texto",
+          "papeis_inferidos": [
+            "atributo"
+          ],
+          "nullable_amostral": true,
+          "exemplos": [
+            "subfin;tpfin",
+            "pa_subfin;pa_tpfin",
+            "financ"
+          ]
+        },
+        {
+          "nome": "rubrica_faec",
+          "tipo_logico_inferido": "texto",
+          "papeis_inferidos": [
+            "atributo"
+          ],
+          "nullable_amostral": true,
+          "exemplos": [
+            "subfin",
+            "faec_tp;rubrica",
+            "sp_co_faec"
+          ]
+        },
+        {
+          "nome": "cep",
+          "tipo_logico_inferido": "texto",
+          "papeis_inferidos": [
+            "atributo"
+          ],
+          "nullable_amostral": true,
+          "exemplos": [
+            "ap_ceppcn",
+            "cep"
+          ]
+        },
+        {
+          "nome": "etnia",
+          "tipo_logico_inferido": "texto",
+          "papeis_inferidos": [
+            "atributo"
+          ],
+          "nullable_amostral": true,
+          "exemplos": [
+            "etnia"
+          ]
+        },
+        {
+          "nome": "natureza_juridica",
+          "tipo_logico_inferido": "texto",
+          "papeis_inferidos": [
+            "atributo"
+          ],
+          "nullable_amostral": true,
+          "exemplos": [
+            "natureza",
+            "nat_jur",
+            "nat_jur;natureza"
+          ]
+        },
+        {
+          "nome": "peso",
+          "tipo_logico_inferido": "texto",
+          "papeis_inferidos": [
+            "atributo"
+          ],
+          "nullable_amostral": true,
+          "exemplos": [
+            "peso",
+            "am_peso",
+            "an_peso"
+          ]
+        },
+        {
+          "nome": "altura",
+          "tipo_logico_inferido": "texto",
+          "papeis_inferidos": [
+            "atributo"
+          ],
+          "nullable_amostral": true,
+          "exemplos": [
+            "am_altura"
+          ]
+        },
+        {
+          "nome": "carater_atendimento",
+          "tipo_logico_inferido": "texto",
+          "papeis_inferidos": [
+            "atributo"
+          ],
+          "nullable_amostral": true,
+          "exemplos": [
+            "car_int",
+            "ap_catend",
+            "amp_caract;ap_catend"
+          ]
+        },
+        {
+          "nome": "gestao",
+          "tipo_logico_inferido": "texto",
+          "papeis_inferidos": [
+            "atributo"
+          ],
+          "nullable_amostral": true,
+          "exemplos": [
+            "gestao",
+            "pa_gestao"
+          ]
+        },
+        {
+          "nome": "desfecho",
+          "tipo_logico_inferido": "texto",
+          "papeis_inferidos": [
+            "atributo"
+          ],
+          "nullable_amostral": true,
+          "exemplos": [
+            "classifin",
+            "pa_encerr",
+            "classi_fin"
+          ]
+        },
+        {
+          "nome": "nascimento",
+          "tipo_logico_inferido": "texto",
+          "papeis_inferidos": [
+            "atributo"
+          ],
+          "nullable_amostral": true,
+          "exemplos": [
+            "nasc",
+            "dtnasc",
+            "dtnasc;dtnascmae"
+          ]
+        },
+        {
+          "nome": "profissional",
+          "tipo_logico_inferido": "texto",
+          "papeis_inferidos": [
+            "atributo"
+          ],
+          "nullable_amostral": true,
+          "exemplos": [
+            "cboprof",
+            "pa_cbocod;pa_cnsmed"
+          ]
+        },
+        {
+          "nome": "gestante",
+          "tipo_logico_inferido": "texto",
+          "papeis_inferidos": [
+            "atributo"
+          ],
+          "nullable_amostral": true,
+          "exemplos": [
+            "gest_diag",
+            "gestacao;semagestac",
+            "cs_gestant"
+          ]
+        },
+        {
+          "nome": "outros_atributos",
+          "tipo_logico_inferido": "texto",
+          "papeis_inferidos": [
+            "atributo"
+          ],
+          "nullable_amostral": false,
+          "exemplos": [
+            "cgc_hosp;cobranca;cod_idade;espec;fonte;homonimo;morte;nacional;uti_int_to;uti_mes_to",
+            "cgc_consor;cgc_hosp;cobranca;cod_idade;espec;fonte;homonimo;modalidade;morte;nacional;qt_proc;uti_int_to;uti_mes_to",
+            "id_distr;id_loc;id_uf"
+          ]
+        }
+      ],
+      "observacoes": [
+        "Metadados inferidos automaticamente a partir do cabeçalho e de amostra do CSV.",
+        "Tipos e chaves devem ser revisados manualmente antes de uso definitivo."
+      ]
+    },
+    {
+      "dataset_id": "td_populacao_ripsa_ano_2025",
+      "origem_url": "https://raw.githubusercontent.com/labx-ia-br/bd_geral/refs/heads/main/td_populacao_ripsa_ano_2025.csv",
+      "arquivo": "td_populacao_ripsa_ano_2025.csv",
+      "categoria": "dimensao_populacional",
+      "descricao": "Base populacional de referência para denominadores, taxas e análises territoriais.",
+      "granularidade": "1 linha por recorte territorial e estrato disponível no arquivo.",
+      "papel_no_ecossistema": [
+        "lookup",
+        "denominador",
+        "apoio_demografico"
+      ],
+      "delimitador_inferido": ",",
+      "n_colunas": 2,
+      "n_linhas_amostradas": 200,
+      "chaves_candidatas": [
+        "co_ibge"
+      ],
+      "campos": [
+        {
+          "nome": "co_ibge",
+          "tipo_logico_inferido": "inteiro",
+          "papeis_inferidos": [
+            "territorio"
+          ],
+          "nullable_amostral": false,
+          "exemplos": [
+            "110001",
+            "110002",
+            "110003"
+          ]
+        },
+        {
+          "nome": "qt_populacao",
+          "tipo_logico_inferido": "inteiro",
+          "papeis_inferidos": [
+            "medida"
+          ],
+          "nullable_amostral": false,
+          "exemplos": [
+            "22787",
+            "109170",
+            "5664"
+          ]
+        }
+      ],
+      "observacoes": [
+        "Metadados inferidos automaticamente a partir do cabeçalho e de amostra do CSV.",
+        "Tipos e chaves devem ser revisados manualmente antes de uso definitivo."
+      ]
+    },
+    {
+      "dataset_id": "td_territorio",
+      "origem_url": "https://raw.githubusercontent.com/labx-ia-br/bd_geral/refs/heads/main/td_territorio.csv",
+      "arquivo": "td_territorio.csv",
+      "categoria": "dimensao_territorial",
+      "descricao": "Base territorial de apoio para chaves geográficas e recortes espaciais.",
+      "granularidade": "1 linha por unidade territorial, conforme chave disponível no arquivo.",
+      "papel_no_ecossistema": [
+        "lookup",
+        "enriquecimento_semantico",
+        "apoio_territorial"
+      ],
+      "delimitador_inferido": ",",
+      "n_colunas": 17,
+      "n_linhas_amostradas": 200,
+      "chaves_candidatas": [
+        "co_seq_territorio",
+        "co_municipio_ibge",
+        "co_macrorregional",
+        "co_cir",
+        "co_regiao_brasil"
+      ],
+      "campos": [
+        {
+          "nome": "co_seq_territorio",
+          "tipo_logico_inferido": "inteiro",
+          "papeis_inferidos": [
+            "territorio"
+          ],
+          "nullable_amostral": false,
+          "exemplos": [
+            "5630",
+            "5629",
+            "5628"
+          ]
+        },
+        {
+          "nome": "sg_uf",
+          "tipo_logico_inferido": "codigo_curto",
+          "papeis_inferidos": [
+            "territorio"
+          ],
+          "nullable_amostral": false,
+          "exemplos": [
+            "DF",
+            "PR",
+            "MG"
+          ]
+        },
+        {
+          "nome": "co_municipio_ibge",
+          "tipo_logico_inferido": "inteiro",
+          "papeis_inferidos": [
+            "territorio"
+          ],
+          "nullable_amostral": false,
+          "exemplos": [
+            "530010",
+            "539940",
+            "539939"
+          ]
+        },
+        {
+          "nome": "co_macrorregional",
+          "tipo_logico_inferido": "inteiro",
+          "papeis_inferidos": [
+            "atributo"
+          ],
+          "nullable_amostral": true,
+          "exemplos": [
+            "5304",
+            "5303",
+            "5305"
+          ]
+        },
+        {
+          "nome": "no_macrorregional",
+          "tipo_logico_inferido": "texto",
+          "papeis_inferidos": [
+            "rotulo"
+          ],
+          "nullable_amostral": true,
+          "exemplos": [
+            "MACRORREGIAO DE SAUDE Nº 2",
+            "MACRORREGIAO DE SAUDE Nº 1",
+            "MACRORREGIAO DE SAUDE Nº 3"
+          ]
+        },
+        {
+          "nome": "co_cir",
+          "tipo_logico_inferido": "inteiro",
+          "papeis_inferidos": [
+            "atributo"
+          ],
+          "nullable_amostral": true,
+          "exemplos": [
+            "53006",
+            "53003",
+            "53007"
+          ]
+        },
+        {
+          "nome": "no_cir_padrao",
+          "tipo_logico_inferido": "texto",
+          "papeis_inferidos": [
+            "rotulo"
+          ],
+          "nullable_amostral": true,
+          "exemplos": [
+            "REGIAO DE SAUDE CENTRAL",
+            "REGIAO DE SAUDE SUDOESTE",
+            "REGIAO DE SAUDE NORTE"
+          ]
+        },
+        {
+          "nome": "no_municipio",
+          "tipo_logico_inferido": "texto",
+          "papeis_inferidos": [
+            "rotulo",
+            "territorio"
+          ],
+          "nullable_amostral": false,
+          "exemplos": [
+            "Brasília",
+            "REGIAO ADMINISTRATIVA DA ASA SUL",
+            "REGIAO ADMINISTRATIVA DA ASA NORTE"
+          ]
+        },
+        {
+          "nome": "co_regiao_brasil",
+          "tipo_logico_inferido": "inteiro",
+          "papeis_inferidos": [
+            "territorio"
+          ],
+          "nullable_amostral": false,
+          "exemplos": [
+            "5",
+            "4",
+            "3"
+          ]
+        },
+        {
+          "nome": "co_uf_ibge",
+          "tipo_logico_inferido": "inteiro",
+          "papeis_inferidos": [
+            "territorio"
+          ],
+          "nullable_amostral": false,
+          "exemplos": [
+            "53",
+            "41",
+            "31"
+          ]
+        },
+        {
+          "nome": "no_regiao_brasil",
+          "tipo_logico_inferido": "texto",
+          "papeis_inferidos": [
+            "rotulo",
+            "territorio"
+          ],
+          "nullable_amostral": false,
+          "exemplos": [
+            "CENTRO-OESTE",
+            "SUL",
+            "SUDESTE"
+          ]
+        },
+        {
+          "nome": "tp_territorio",
+          "tipo_logico_inferido": "texto",
+          "papeis_inferidos": [
+            "territorio"
+          ],
+          "nullable_amostral": false,
+          "exemplos": [
+            "distrito",
+            "reg.adm.",
+            "municipio"
+          ]
+        },
+        {
+          "nome": "nu_altitude",
+          "tipo_logico_inferido": "inteiro",
+          "papeis_inferidos": [
+            "atributo"
+          ],
+          "nullable_amostral": true,
+          "exemplos": [
+            "650",
+            "509",
+            "0"
+          ]
+        },
+        {
+          "nome": "nu_latitude",
+          "tipo_logico_inferido": "numerico",
+          "papeis_inferidos": [
+            "atributo"
+          ],
+          "nullable_amostral": true,
+          "exemplos": [
+            "-24.437958",
+            "-15.918743",
+            "-28.571229"
+          ]
+        },
+        {
+          "nome": "nu_longitude",
+          "tipo_logico_inferido": "numerico",
+          "papeis_inferidos": [
+            "atributo"
+          ],
+          "nullable_amostral": true,
+          "exemplos": [
+            "-51.945357",
+            "-46.104324",
+            "-52.595507"
+          ]
+        },
+        {
+          "nome": "vl_area_km2",
+          "tipo_logico_inferido": "numerico",
+          "papeis_inferidos": [
+            "medida"
+          ],
+          "nullable_amostral": true,
+          "exemplos": [
+            "545.6900024414062",
+            "5279.419921875",
+            "114.23999786376953"
+          ]
+        },
+        {
+          "nome": "vl_idhm",
+          "tipo_logico_inferido": "numerico",
+          "papeis_inferidos": [
+            "identificador",
+            "medida"
+          ],
+          "nullable_amostral": true,
+          "exemplos": [
+            "0.651",
+            "0.656",
+            "0.742"
+          ]
+        }
+      ],
+      "observacoes": [
+        "Metadados inferidos automaticamente a partir do cabeçalho e de amostra do CSV.",
+        "Tipos e chaves devem ser revisados manualmente antes de uso definitivo."
+      ]
+    }
+  ]
+}

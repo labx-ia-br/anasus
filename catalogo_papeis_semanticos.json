@@ -1,0 +1,344 @@
+{
+  "projeto": "ecossistema_analitico_sus",
+  "tipo": "catalogo_papeis_semanticos",
+  "versao": "0.1.0",
+  "papeis": {
+    "territorio": {
+      "definicao": "Papel semântico genérico para localização territorial do registro analítico, podendo representar município, UF, região de saúde, macrorregião ou região do Brasil, conforme o sistema de origem.",
+      "tipo_esperado": {
+        "natureza": "codigo_territorial_ou_sigla",
+        "formatos_aceitos": [
+          "codigo_ibge_municipal",
+          "codigo_ibge_uf",
+          "sigla_uf",
+          "codigo_regiao_saude",
+          "codigo_macrorregiao",
+          "codigo_regiao_brasil"
+        ],
+        "observacoes": [
+          "preferir texto para preservar zeros à esquerda",
+          "normalizar para município IBGE quando o objetivo for compatibilização ampla"
+        ]
+      },
+      "dimensao_preferencial": {
+        "dataset": "td_territorio",
+        "chave_preferencial": "co_municipio_ibge",
+        "alternativas": [
+          "sg_uf",
+          "co_cir",
+          "co_macrorregional",
+          "co_regiao_brasil"
+        ]
+      },
+      "drill_disponivel": [
+        {
+          "nivel": "municipio",
+          "codigo": "co_municipio_ibge",
+          "rotulo": "no_municipio"
+        },
+        {
+          "nivel": "regiao_saude",
+          "codigo": "co_cir",
+          "rotulo": "no_cir_padrao"
+        },
+        {
+          "nivel": "macrorregiao_saude",
+          "codigo": "co_macrorregional",
+          "rotulo": "no_macrorregional"
+        },
+        {
+          "nivel": "uf",
+          "codigo": "co_uf_ibge",
+          "rotulo": "sg_uf"
+        },
+        {
+          "nivel": "regiao_brasil",
+          "codigo": "co_regiao_brasil",
+          "rotulo": "no_regiao_brasil"
+        }
+      ],
+      "exemplos_campos_fisicos": [
+        "munic",
+        "munic_res",
+        "munic_mov",
+        "sg_uf",
+        "ap_munpcn",
+        "id_mn_resi",
+        "ufres"
+      ]
+    },
+    "municipio_residencia": {
+      "definicao": "Localização territorial de residência do indivíduo, paciente ou caso, preferencialmente representada no nível municipal.",
+      "tipo_esperado": {
+        "natureza": "codigo_municipal_ou_campo_operacional_equivalente",
+        "formatos_aceitos": [
+          "codigo_ibge_municipal",
+          "codigo_municipal_sistema"
+        ],
+        "observacoes": [
+          "normalizar para co_municipio_ibge",
+          "quando o campo vier agregado com UF, aplicar regra de decomposição antes do join"
+        ]
+      },
+      "dimensao_preferencial": {
+        "dataset": "td_territorio",
+        "chave_preferencial": "co_municipio_ibge"
+      },
+      "drill_disponivel": [
+        "municipio",
+        "regiao_saude",
+        "macrorregiao_saude",
+        "uf",
+        "regiao_brasil"
+      ],
+      "exemplos_campos_fisicos": [
+        "munic_res",
+        "codmunres",
+        "id_mn_resi",
+        "ufres",
+        "ap_munpcn"
+      ]
+    },
+    "municipio_estabelecimento": {
+      "definicao": "Localização territorial do estabelecimento de saúde, unidade executante ou ponto de atendimento, preferencialmente no nível municipal.",
+      "tipo_esperado": {
+        "natureza": "codigo_municipal_ou_campo_operacional_equivalente",
+        "formatos_aceitos": [
+          "codigo_ibge_municipal",
+          "codigo_municipal_sistema"
+        ],
+        "observacoes": [
+          "normalizar para co_municipio_ibge",
+          "distinguir de município de residência em análises de fluxo assistencial"
+        ]
+      },
+      "dimensao_preferencial": {
+        "dataset": "td_territorio",
+        "chave_preferencial": "co_municipio_ibge"
+      },
+      "drill_disponivel": [
+        "municipio",
+        "regiao_saude",
+        "macrorregiao_saude",
+        "uf",
+        "regiao_brasil"
+      ],
+      "exemplos_campos_fisicos": [
+        "munic_mov",
+        "ap_ufmun",
+        "ufmun"
+      ]
+    },
+    "procedimento": {
+      "definicao": "Ato, item, procedimento ou produção assistencial classificada segundo a hierarquia SIGTAP.",
+      "tipo_esperado": {
+        "natureza": "codigo_sigTap",
+        "formatos_aceitos": [
+          "co_procedimento"
+        ],
+        "observacoes": [
+          "tratar como texto",
+          "preservar zeros à esquerda",
+          "permitir normalização de campos operacionais locais para código SIGTAP"
+        ]
+      },
+      "dimensao_preferencial": {
+        "dataset": "tb_procedimento",
+        "chave_preferencial": "co_procedimento",
+        "relacoes_hierarquicas": [
+          "tb_grupo",
+          "tb_sub_grupo",
+          "tb_forma_organizacao"
+        ]
+      },
+      "drill_disponivel": [
+        {
+          "nivel": "procedimento",
+          "codigo": "co_procedimento",
+          "rotulo": "no_procedimento"
+        },
+        {
+          "nivel": "grupo",
+          "codigo": "co_grupo",
+          "rotulo": "no_grupo"
+        },
+        {
+          "nivel": "subgrupo",
+          "codigo": [
+            "co_grupo",
+            "co_sub_grupo"
+          ],
+          "rotulo": "no_sub_grupo"
+        },
+        {
+          "nivel": "forma_organizacao",
+          "codigo": [
+            "co_grupo",
+            "co_sub_grupo",
+            "co_forma_organizacao"
+          ],
+          "rotulo": "no_forma_organizacao"
+        }
+      ],
+      "exemplos_campos_fisicos": [
+        "proc_rea",
+        "ap_pripal",
+        "proc_id"
+      ]
+    },
+    "diagnostico": {
+      "definicao": "Diagnóstico clínico ou nosológico associado ao registro, usualmente em CID ou campos equivalentes do sistema de origem.",
+      "tipo_esperado": {
+        "natureza": "codigo_diagnostico",
+        "formatos_aceitos": [
+          "cid10",
+          "cid11",
+          "campo_operacional_diagnostico"
+        ],
+        "observacoes": [
+          "aceitar listas de campos separadas por ';'",
+          "permitir distinção entre diagnóstico principal e secundário"
+        ]
+      },
+      "dimensao_preferencial": {
+        "dataset": null,
+        "chave_preferencial": null,
+        "observacoes": [
+          "pode futuramente apontar para uma td_cid padronizada"
+        ]
+      },
+      "drill_disponivel": [
+        "diagnostico_principal",
+        "diagnostico_secundario",
+        "agrupamento_cid"
+      ],
+      "exemplos_campos_fisicos": [
+        "diag_princ",
+        "diag_secun",
+        "ap_cidcas",
+        "ap_cidpri",
+        "ap_cidsec",
+        "aq_cid10",
+        "aq_cidini1",
+        "aq_cidini2",
+        "aq_cidini3"
+      ]
+    },
+    "tempo": {
+      "definicao": "Referência temporal do registro analítico, podendo expressar ano, competência, mês, data do evento, data de entrada, data de saída ou outra marca temporal relevante.",
+      "tipo_esperado": {
+        "natureza": "data_ou_competencia",
+        "formatos_aceitos": [
+          "YYYY",
+          "YYYYMM",
+          "YYYY-MM-DD",
+          "DD/MM/YYYY"
+        ],
+        "observacoes": [
+          "normalizar para YYYY ou YYYYMM conforme a análise",
+          "quando houver múltiplos campos temporais, explicitar qual será usado"
+        ]
+      },
+      "dimensao_preferencial": {
+        "dataset": null,
+        "chave_preferencial": "periodo_normalizado",
+        "observacoes": [
+          "nesta fase, sem dimensão temporal dedicada"
+        ]
+      },
+      "drill_disponivel": [
+        "ano",
+        "competencia_mensal",
+        "data_evento"
+      ],
+      "exemplos_campos_fisicos": [
+        "ano_cmpt",
+        "ano",
+        "ano_nasc",
+        "ano_not",
+        "dt_inter",
+        "dt_saida",
+        "mes_cmpt",
+        "dt_atend",
+        "dt_comp"
+      ]
+    },
+    "quantidade": {
+      "definicao": "Medida discreta de contagem, frequência, dias, doses, ocorrências ou volume registrado em um fato analítico.",
+      "tipo_esperado": {
+        "natureza": "medida_discreta",
+        "formatos_aceitos": [
+          "inteiro",
+          "texto_numerico_normalizavel"
+        ],
+        "observacoes": [
+          "campos podem vir unitários ou em listas separadas por ';'",
+          "definir regra de agregação antes do uso analítico"
+        ]
+      },
+      "dimensao_preferencial": {
+        "dataset": null,
+        "chave_preferencial": null,
+        "observacoes": [
+          "papel de medida, não de dimensão"
+        ]
+      },
+      "drill_disponivel": [
+        "agregacao_simples",
+        "soma",
+        "media_quando_aplicavel",
+        "pareto"
+      ],
+      "exemplos_campos_fisicos": [
+        "dias_perm",
+        "qt_17",
+        "qt_1a4",
+        "qt_5a16",
+        "qt_anc",
+        "qt_atrat",
+        "qt_dose"
+      ]
+    },
+    "valor": {
+      "definicao": "Medida contínua ou monetária associada ao registro analítico, incluindo valores financeiros aprovados, apresentados ou parâmetros clínicos numéricos.",
+      "tipo_esperado": {
+        "natureza": "medida_continua_ou_monetaria",
+        "formatos_aceitos": [
+          "decimal",
+          "inteiro",
+          "texto_numerico_normalizavel"
+        ],
+        "observacoes": [
+          "distinguir valor monetário de parâmetro clínico",
+          "aplicar conversão numérica antes de agregações"
+        ]
+      },
+      "dimensao_preferencial": {
+        "dataset": null,
+        "chave_preferencial": null,
+        "observacoes": [
+          "papel de medida, não de dimensão"
+        ]
+      },
+      "drill_disponivel": [
+        "soma",
+        "media",
+        "mediana",
+        "distribuicao"
+      ],
+      "exemplos_campos_fisicos": [
+        "vl_apres",
+        "vl_aprov",
+        "pa_valapr",
+        "pa_valpro",
+        "uf_zi"
+      ]
+    }
+  },
+  "observacoes_gerais": [
+    "papéis semânticos descrevem a função analítica do campo, não apenas seu nome físico",
+    "um mesmo sistema pode mapear o mesmo papel para múltiplos campos físicos",
+    "campos separados por ';' no mapa de atributos devem ser tratados como multirreferência semântica",
+    "este catálogo deve alimentar validate_spec(spec, catalog), query builder e navegadores"
+  ]
+}

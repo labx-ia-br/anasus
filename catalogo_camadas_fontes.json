@@ -1,0 +1,654 @@
+{
+  "projeto": "ecossistema_analitico_sus",
+  "tipo": "catalogo_camadas_fontes",
+  "versao": "0.1.0",
+  "descricao": "Catálogo das camadas de fontes do ecossistema analítico do SUS, separando origem primária, staging, analítica, metadado e domínio.",
+  "taxonomia_camadas": {
+    "primaria": {
+      "definicao": "Origem oficial externa do dado.",
+      "papel_no_ecossistema": [
+        "aquisição",
+        "rastreamento de proveniência",
+        "referência de sistema de origem"
+      ]
+    },
+    "staging": {
+      "definicao": "Persistência técnica intermediária, próxima do bruto, usada para ETL.",
+      "papel_no_ecossistema": [
+        "ingestão",
+        "armazenamento bruto",
+        "consolidação intermediária",
+        "reprocessamento"
+      ]
+    },
+    "analitica": {
+      "definicao": "Estrutura derivada para exploração, indicadores e relatórios.",
+      "papel_no_ecossistema": [
+        "exploração",
+        "indicadores",
+        "consultas temáticas",
+        "relatórios",
+        "visualizações"
+      ]
+    },
+    "metadado": {
+      "definicao": "Estrutura de apoio semântico, classificatória e de governança.",
+      "papel_no_ecossistema": [
+        "mapeamento semântico",
+        "governança",
+        "dicionário do ecossistema",
+        "regras de compatibilização"
+      ]
+    },
+    "dominio": {
+      "definicao": "Tabelas externas de domínio e referência, usadas para classificação, enriquecimento e padronização analítica.",
+      "papel_no_ecossistema": [
+        "lookup",
+        "drill",
+        "enriquecimento",
+        "padronização de códigos",
+        "denominadores e recortes territoriais"
+      ]
+    }
+  },
+  "convencoes_nomenclatura": {
+    "objetos": {
+      "td_": "tabela de domínio (OLAP/OLTP)",
+      "tf_": "tabela de fatos (OLAP)",
+      "tb_": "tabela (OLTP)",
+      "vw_": "view",
+      "mv_": "materialized view",
+      "bd_": "base de dados ou schema geral",
+      "dm_": "datamart",
+      "tm_": "tabela ou schema temporário",
+      "st_": "staging"
+    },
+    "prefixos_legados_fora_do_padrao": [
+      "cih_",
+      "ciha_",
+      "cnes_",
+      "sia_",
+      "resp_",
+      "sih_",
+      "sinanfinais_",
+      "simdofet_",
+      "sinasc_",
+      "siscan_",
+      "sisprenatal_"
+    ],
+    "atributos": {
+      "nu_": "campo numérico discreto",
+      "vl_": "valor monetário ou parâmetro clínico",
+      "qt_": "quantidade discreta",
+      "co_": "código",
+      "sg_": "sigla",
+      "no_": "nome ou rótulo curto",
+      "ds_": "descrição longa",
+      "st_": "status"
+    }
+  },
+  "camadas": {
+    "primaria": {
+      "descricao_modelagem": "Catálogo de sistemas e subsistemas oficiais externos.",
+      "entidades_recomendadas": [
+        "sistema",
+        "subsistema",
+        "origem_publicacao",
+        "gestor",
+        "periodo_vigencia",
+        "formato_origem"
+      ],
+      "fontes": [
+        {
+          "id_fonte": "primaria_sia1",
+          "classe": "primaria",
+          "sistema": "SIA1",
+          "subsistema": null,
+          "nome": "SIA - Sistema de Informações Ambulatoriais do SUS de 1994 a 2007",
+          "gestor": "SAES/MS",
+          "origem_publicacao": "FTP DATASUS",
+          "formato_origem": [
+            "DBC",
+            "DBF"
+          ],
+          "url": "ftp://ftp.datasus.gov.br/dissemin/publicos/SIASUS/199407_200712/Dados/",
+          "periodo_vigencia": {
+            "inicio": "1994-07",
+            "fim": "2007-12"
+          },
+          "observacoes": [
+            "fonte primária histórica do SIA"
+          ]
+        },
+        {
+          "id_fonte": "primaria_sia2",
+          "classe": "primaria",
+          "sistema": "SIA2",
+          "subsistema": null,
+          "nome": "SIA - Sistema de Informações Ambulatoriais do SUS a partir de 2008",
+          "gestor": "SAES/MS",
+          "origem_publicacao": "FTP DATASUS",
+          "formato_origem": [
+            "DBC",
+            "DBF"
+          ],
+          "url": "ftp://ftp.datasus.gov.br/dissemin/publicos/SIASUS/200801_/Dados/",
+          "periodo_vigencia": {
+            "inicio": "2008-01",
+            "fim": null
+          }
+        },
+        {
+          "id_fonte": "primaria_sih1",
+          "classe": "primaria",
+          "sistema": "SIH1",
+          "subsistema": null,
+          "nome": "SIH - Sistema de Informações Hospitalares do SUS de 1992 a 2007",
+          "gestor": "SAES/MS",
+          "origem_publicacao": "FTP DATASUS",
+          "formato_origem": [
+            "DBC",
+            "DBF"
+          ],
+          "url": "ftp://ftp.datasus.gov.br/dissemin/publicos/SIHSUS/199201_200712/Dados/",
+          "periodo_vigencia": {
+            "inicio": "1992-01",
+            "fim": "2007-12"
+          }
+        },
+        {
+          "id_fonte": "primaria_sih2",
+          "classe": "primaria",
+          "sistema": "SIH2",
+          "subsistema": null,
+          "nome": "SIH - Sistema de Informações Hospitalares do SUS a partir de 2008",
+          "gestor": "SAES/MS",
+          "origem_publicacao": "FTP DATASUS",
+          "formato_origem": [
+            "DBC",
+            "DBF"
+          ],
+          "url": "ftp://ftp.datasus.gov.br/dissemin/publicos/SIHSUS/200801_/Dados/",
+          "periodo_vigencia": {
+            "inicio": "2008-01",
+            "fim": null
+          }
+        },
+        {
+          "id_fonte": "primaria_sim1",
+          "classe": "primaria",
+          "sistema": "SIM1",
+          "subsistema": null,
+          "nome": "SIM - Declarações de Óbitos Fetais e derivados",
+          "gestor": "SVS/MS",
+          "origem_publicacao": "FTP DATASUS",
+          "formato_origem": [
+            "DBC",
+            "DBF"
+          ],
+          "url": "ftp://ftp.datasus.gov.br/dissemin/publicos/SIM/CID10/DOFET/"
+        },
+        {
+          "id_fonte": "primaria_sim2",
+          "classe": "primaria",
+          "sistema": "SIM2",
+          "subsistema": null,
+          "nome": "SIM - Sistema de Informações de Mortalidade",
+          "gestor": "SVS/MS",
+          "origem_publicacao": "FTP DATASUS",
+          "formato_origem": [
+            "DBC",
+            "DBF"
+          ],
+          "url": "ftp://ftp.datasus.gov.br/dissemin/publicos/SIM/CID10/DORES/"
+        },
+        {
+          "id_fonte": "primaria_sinan",
+          "classe": "primaria",
+          "sistema": "SINAN",
+          "subsistema": null,
+          "nome": "SINAN - Sistema de Informação de Agravos de Notificação",
+          "gestor": "SVS/MS",
+          "origem_publicacao": "FTP DATASUS",
+          "formato_origem": [
+            "DBC",
+            "DBF"
+          ],
+          "url": "ftp://ftp.datasus.gov.br/dissemin/publicos/SINAN/DADOS/FINAIS/"
+        },
+        {
+          "id_fonte": "primaria_sisab",
+          "classe": "primaria",
+          "sistema": "SISAB",
+          "subsistema": null,
+          "nome": "SISAB - Sistema de Informação em Saúde para a Atenção Básica",
+          "gestor": "SAPS/MS",
+          "origem_publicacao": "FTP DATASUS",
+          "formato_origem": [
+            "DBC",
+            "DBF"
+          ],
+          "url": "ftp://ftp.datasus.gov.br/dissemin/publicos/CMD/DadosSISAB/"
+        },
+        {
+          "id_fonte": "primaria_pni",
+          "classe": "primaria",
+          "sistema": "PNI",
+          "subsistema": null,
+          "nome": "SIPNI - Programa Nacional de Imunizações",
+          "gestor": "SVS/MS",
+          "origem_publicacao": "FTP DATASUS",
+          "formato_origem": [
+            "DBC",
+            "DBF"
+          ],
+          "url": "ftp://ftp.datasus.gov.br/dissemin/publicos/PNI/DADOS/"
+        },
+        {
+          "id_fonte": "primaria_cnes",
+          "classe": "primaria",
+          "sistema": "CNES",
+          "subsistema": null,
+          "nome": "Cadastro Nacional de Estabelecimentos de Saúde",
+          "gestor": "SAES/MS",
+          "origem_publicacao": "FTP DATASUS / SOAP XML",
+          "formato_origem": [
+            "DBC",
+            "DBF",
+            "SOAP XML"
+          ],
+          "url": "ftp://ftp.datasus.gov.br/dissemin/publicos/CNES/200508_/Dados/"
+        },
+        {
+          "id_fonte": "primaria_sigtap",
+          "classe": "primaria",
+          "sistema": "SIGTAP",
+          "subsistema": null,
+          "nome": "Sistema de Gerenciamento da Tabela de Procedimentos, Medicamentos e OPM do SUS",
+          "gestor": "SAES/MS",
+          "origem_publicacao": "FTP DATASUS / SOAP XML",
+          "formato_origem": [
+            "DBF",
+            "ZIP",
+            "SOAP XML"
+          ],
+          "url": "ftp://ftp.datasus.gov.br/dissemin/publicos/SIASUS/200801_/Auxiliar/TAB_SIA.zip"
+        },
+        {
+          "id_fonte": "primaria_sinasc",
+          "classe": "primaria",
+          "sistema": "SINASC",
+          "subsistema": null,
+          "nome": "Sistema de Informação sobre Nascidos Vivos",
+          "gestor": "SVS/MS",
+          "origem_publicacao": "FTP DATASUS",
+          "formato_origem": [
+            "DBC",
+            "DBF"
+          ],
+          "url": [
+            "ftp://ftp.datasus.gov.br/dissemin/publicos/SINASC/ANT/DNRES/",
+            "ftp://ftp.datasus.gov.br/dissemin/publicos/SINASC/NOV/DNRES/"
+          ]
+        },
+        {
+          "id_fonte": "primaria_sisprenatal",
+          "classe": "primaria",
+          "sistema": "SISPRENATAL",
+          "subsistema": null,
+          "nome": "Sistema de Acompanhamento da Gestante",
+          "gestor": "SVS/MS",
+          "origem_publicacao": "FTP DATASUS",
+          "formato_origem": [
+            "DBC",
+            "DBF"
+          ],
+          "url": "ftp://ftp.datasus.gov.br/dissemin/publicos/SISPRENATAL/201201_/Dados/"
+        }
+      ],
+      "observacoes": [
+        "esta camada descreve a proveniência oficial, não os objetos PostgreSQL internos",
+        "subsistemas detalhados podem ser referenciados via td_dicionario_subsistema"
+      ]
+    },
+    "staging": {
+      "descricao_modelagem": "Persistência técnica por ambiente e objetos de carga.",
+      "repositorios": [
+        {
+          "id_repositorio": "staging_bureta",
+          "classe": "staging",
+          "apelido": "bureta",
+          "papel": "histórico até 2019",
+          "ambiente_logico": "staging",
+          "banco": "bdsus",
+          "observacoes": [
+            "guardar apenas metadados de conexão fora do arquivo versionado",
+            "aplicar filtro padrão por competência < 2020"
+          ],
+          "filtro_temporal_padrao": "left(nu_competencia::text,4)::int < 2020"
+        },
+        {
+          "id_repositorio": "staging_pipeta",
+          "classe": "staging",
+          "apelido": "pipeta",
+          "papel": "2020 em diante",
+          "ambiente_logico": "staging",
+          "banco": "bdsus",
+          "observacoes": [
+            "guardar apenas metadados de conexão fora do arquivo versionado",
+            "aplicar filtro padrão por competência >= 2020"
+          ],
+          "filtro_temporal_padrao": "left(nu_competencia::text,4)::int >= 2020"
+        }
+      ],
+      "padrao_objeto_staging": {
+        "granularidade": "schema.table",
+        "exemplos": [
+          "cnes_200508_dc.dcac0508",
+          "cnes_200508_dc.dcac0509",
+          "cnes_200508_dc.dcac0510",
+          "cnes_200508_dc.dcac0511"
+        ],
+        "componentes_semanticos": [
+          "prefixo_sistema_ou_subsistema",
+          "competencia_base_ou_versao",
+          "subsistema",
+          "nome_fisico_tabela"
+        ]
+      },
+      "regras_modelagem": [
+        "registrar no_origem em cada tabela consolidada",
+        "registrar sistema e subsistema inferidos do schema e do nome físico",
+        "preservar granularidade temporal original quando houver"
+      ]
+    },
+    "analitica": {
+      "descricao_modelagem": "Estruturas derivadas para exploração e indicadores.",
+      "repositorios": [
+        {
+          "id_repositorio": "analitica_dmsus",
+          "classe": "analitica",
+          "banco": "dmsus",
+          "papel": "datamarts e visões analíticas",
+          "observacoes": [
+            "guardar credenciais fora do catálogo versionado"
+          ]
+        }
+      ],
+      "cubos_conceituais": [
+        {
+          "id_cubo": "dm_condicao_saude",
+          "classe": "analitica",
+          "nome": "Condição de saúde",
+          "eixos_principais": [
+            "condicao_cid",
+            "territorio",
+            "tempo",
+            "procedimento"
+          ],
+          "origem_semantica": [
+            "td_diretriz_cuidado"
+          ],
+          "observacoes": [
+            "lista de CID associada a cada dm_ definida por td_diretriz_cuidado"
+          ]
+        },
+        {
+          "id_cubo": "dm_territorio",
+          "classe": "analitica",
+          "nome": "Território",
+          "eixos_principais": [
+            "municipio",
+            "regiao_saude",
+            "macrorregiao",
+            "uf",
+            "regiao_brasil",
+            "tempo"
+          ]
+        },
+        {
+          "id_cubo": "dm_procedimento",
+          "classe": "analitica",
+          "nome": "Procedimento",
+          "eixos_principais": [
+            "procedimento",
+            "grupo",
+            "subgrupo",
+            "forma_organizacao",
+            "tempo",
+            "territorio"
+          ],
+          "observacoes": [
+            "preferir subgrupo SIGTAP como eixo agregado padrão, quando aplicável"
+          ]
+        }
+      ],
+      "regras_modelagem": [
+        "dm_ representa visão analítica derivada",
+        "vw_ e mv_ podem ser usados como superfícies de consumo",
+        "cada estrutura analítica deve referenciar fonte primária e staging de origem"
+      ]
+    },
+    "metadado": {
+      "descricao_modelagem": "Objetos que descrevem o ecossistema, a semântica e a governança.",
+      "fontes": [
+        {
+          "id_fonte": "meta_td_bdsus_mapa_atributos",
+          "classe": "metadado",
+          "dataset": "td_bdsus_mapa_atributos",
+          "papel": [
+            "mapeamento_semantico",
+            "compatibilizacao_de_campos"
+          ],
+          "origem": "https://raw.githubusercontent.com/labx-ia-br/bd_geral/refs/heads/main/td_bdsus_mapa_atributos.csv"
+        },
+        {
+          "id_fonte": "meta_td_diretriz_cuidado",
+          "classe": "metadado",
+          "dataset": "td_diretriz_cuidado",
+          "papel": [
+            "diretriz_tematica",
+            "associacao_condicao_cid_datamart"
+          ],
+          "origem": "fonte interna ou repositório a registrar"
+        },
+        {
+          "id_fonte": "meta_td_dicionario_sistema",
+          "classe": "metadado",
+          "dataset": "td_dicionario_sistema",
+          "papel": [
+            "dicionario_de_sistemas",
+            "governanca_de_proveniencia"
+          ],
+          "origem": "fonte interna ou repositório a registrar"
+        },
+        {
+          "id_fonte": "meta_td_dicionario_subsistema",
+          "classe": "metadado",
+          "dataset": "td_dicionario_subsistema",
+          "papel": [
+            "dicionario_de_subsistemas",
+            "rotulacao_de_prefixos",
+            "governanca_de_subsistemas"
+          ],
+          "origem": "https://github.com/labx-ia-br/bd_geral/blob/main/td_dicionario_subsistema.csv"
+        }
+      ],
+      "regras_modelagem": [
+        "metadado não deve ser confundido com tabela de domínio",
+        "metadado descreve origem, semântica, governança e compatibilização",
+        "metadado pode ser consumido por validate_spec, query builder e navegadores"
+      ]
+    },
+    "dominio": {
+      "descricao_modelagem": "Tabelas externas de domínio e referência usadas em joins, drill e classificação.",
+      "fontes": [
+        {
+          "id_fonte": "dom_td_territorio",
+          "classe": "dominio",
+          "dataset": "td_territorio",
+          "papel": [
+            "dimensao_territorial",
+            "drill_territorial",
+            "normalizacao_geografica"
+          ],
+          "granularidade": "1 linha por município ou unidade territorial",
+          "origem": "https://raw.githubusercontent.com/labx-ia-br/bd_geral/refs/heads/main/td_territorio.csv"
+        },
+        {
+          "id_fonte": "dom_td_populacao_ripsa_ano_2025",
+          "classe": "dominio",
+          "dataset": "td_populacao_ripsa_ano_2025",
+          "papel": [
+            "denominador_populacional",
+            "taxas",
+            "padronizacao_de_indicadores"
+          ],
+          "granularidade": "1 linha por município em 2025",
+          "origem": "https://raw.githubusercontent.com/labx-ia-br/bd_geral/refs/heads/main/td_populacao_ripsa_ano_2025.csv"
+        },
+        {
+          "id_fonte": "dom_tb_procedimento",
+          "classe": "dominio",
+          "dataset": "tb_procedimento",
+          "papel": [
+            "classificacao_sigtap",
+            "lookup_de_procedimento",
+            "drill_procedimento"
+          ],
+          "origem": "https://raw.githubusercontent.com/labx-ia-br/bd_sigtap/refs/heads/main/tb_procedimento.csv"
+        },
+        {
+          "id_fonte": "dom_tb_grupo",
+          "classe": "dominio",
+          "dataset": "tb_grupo",
+          "papel": [
+            "hierarquia_sigtap"
+          ],
+          "origem": "https://raw.githubusercontent.com/labx-ia-br/bd_sigtap/refs/heads/main/tb_grupo.csv"
+        },
+        {
+          "id_fonte": "dom_tb_sub_grupo",
+          "classe": "dominio",
+          "dataset": "tb_sub_grupo",
+          "papel": [
+            "hierarquia_sigtap"
+          ],
+          "origem": "https://raw.githubusercontent.com/labx-ia-br/bd_sigtap/refs/heads/main/tb_sub_grupo.csv"
+        },
+        {
+          "id_fonte": "dom_tb_forma_organizacao",
+          "classe": "dominio",
+          "dataset": "tb_forma_organizacao",
+          "papel": [
+            "hierarquia_sigtap"
+          ],
+          "origem": "https://raw.githubusercontent.com/labx-ia-br/bd_sigtap/refs/heads/main/tb_forma_organizacao.csv"
+        },
+        {
+          "id_fonte": "dom_td_doenca_cid10",
+          "classe": "dominio",
+          "dataset": "td_doenca_cid10",
+          "papel": [
+            "lookup_cid10",
+            "classificacao_nosologica",
+            "drill_diagnostico"
+          ],
+          "origem": "https://raw.githubusercontent.com/labx-ia-br/bd_geral/refs/heads/main/td_doenca_cid10.csv"
+        }
+      ],
+      "regras_modelagem": [
+        "domínio deve ser versionado independentemente da camada metadado",
+        "domínio pode alimentar joins, labels, drill e agregações",
+        "mapeamentos completos do TabWin podem entrar nesta camada"
+      ],
+      "fontes_futuras_previstas": [
+        "mapeamento completo recebido do TabWin para SIA",
+        "mapeamento completo recebido do TabWin para SIH",
+        "mapeamento completo recebido do TabWin para SIM",
+        "mapeamento completo recebido do TabWin para SINAN",
+        "mapeamento completo recebido do TabWin para SINASC",
+        "mapeamento completo recebido do TabWin para CNES",
+        "mapeamento completo recebido do TabWin para SRAG",
+        "mapeamento completo recebido do TabWin para SIPNI"
+      ]
+    }
+  },
+  "relacoes_entre_camadas": [
+    {
+      "origem": "primaria",
+      "destino": "staging",
+      "tipo": "ingestao",
+      "descricao": "dados oficiais são baixados e persistidos em staging"
+    },
+    {
+      "origem": "staging",
+      "destino": "analitica",
+      "tipo": "etl_transformacao",
+      "descricao": "dados staging são integrados e transformados em datamarts e visões analíticas"
+    },
+    {
+      "origem": "metadado",
+      "destino": "staging",
+      "tipo": "governanca",
+      "descricao": "metadados orientam identificação, rastreabilidade e compatibilização de objetos staging"
+    },
+    {
+      "origem": "metadado",
+      "destino": "analitica",
+      "tipo": "semantica",
+      "descricao": "metadados orientam query builder, validação e navegação analítica"
+    },
+    {
+      "origem": "dominio",
+      "destino": "analitica",
+      "tipo": "lookup",
+      "descricao": "tabelas de domínio enriquecem fatos e dimensões analíticas"
+    },
+    {
+      "origem": "dominio",
+      "destino": "staging",
+      "tipo": "normalizacao",
+      "descricao": "domínios podem apoiar padronização durante a transformação"
+    }
+  ],
+  "artefatos_relacionados": [
+    "catalogo_fontes.json",
+    "catalogo_regras_join.json",
+    "catalogo_papeis_semanticos.json"
+  ],
+  "recomendacoes_governanca": [
+    "não versionar credenciais, host, usuário ou senha em arquivos do catálogo",
+    "versionar apenas metadados de ambiente lógico e papel de cada repositório",
+    "separar dicionário de sistemas/subsistemas da camada de domínio",
+    "usar metadado para semântica e domínio para lookup externo e classificação",
+    "cada dataset analítico deve apontar explicitamente para a camada de origem"
+  ],
+  "pendencias_modelagem": [
+    {
+      "id": "pendencia_001",
+      "tema": "primaria",
+      "descricao": "detalhar todos os subsistemas oficiais a partir de td_dicionario_subsistema"
+    },
+    {
+      "id": "pendencia_002",
+      "tema": "staging",
+      "descricao": "criar catálogo de objetos staging por schema.table com no_origem, sistema, subsistema, competencia e cobertura temporal"
+    },
+    {
+      "id": "pendencia_003",
+      "tema": "analitica",
+      "descricao": "definir dicionário formal para cada dm_, vw_ e mv_"
+    },
+    {
+      "id": "pendencia_004",
+      "tema": "dominio",
+      "descricao": "incorporar tabelas completas de domínio recebidas do TabWin"
+    },
+    {
+      "id": "pendencia_005",
+      "tema": "metadado",
+      "descricao": "formalizar localização versionada de td_diretriz_cuidado e td_dicionario_sistema"
+    }
+  ]
+}

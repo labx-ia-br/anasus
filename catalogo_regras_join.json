@@ -1,0 +1,412 @@
+{
+  "projeto": "ecossistema_analitico_sus",
+  "tipo": "catalogo_regras_join",
+  "versao": "0.1.0",
+  "nomenclatura": {
+    "objetos": {
+      "td_": "tabela de dominio (OLAP/OLTP)",
+      "tf_": "tabela de fatos (OLAP)",
+      "tb_": "tabela (OLTP)",
+      "vw_": "view",
+      "mv_": "materialized view",
+      "bd_": "base de dados - schema em geral",
+      "dm_": "datamart (OLAP conceitual)",
+      "tm_": "tabela ou schema temporario",
+      "st_": "staging (dados brutos)"
+    },
+    "prefixos_legados_fora_do_padrao": [
+      "cih_",
+      "ciha_",
+      "cnes_",
+      "sia_",
+      "resp_",
+      "sih_",
+      "sinanfinais_",
+      "simdofet_",
+      "sinasc_",
+      "siscan_",
+      "sisprenatal_"
+    ],
+    "atributos": {
+      "nu_": "campo numerico discreto",
+      "vl_": "valor (R$ ou parametro clinico)",
+      "qt_": "quantidade discreta mensurada ou atribuida",
+      "co_": "codigo (usualmente chave)",
+      "sg_": "sigla",
+      "no_": "nome ou rotulo textual curto",
+      "ds_": "descricao textual longa",
+      "st_": "status, usualmente booleano"
+    }
+  },
+  "principios_gerais": {
+    "normalizacao_antes_do_join": [
+      "preservar zeros a esquerda em campos co_, sg_ e codigos operacionais",
+      "padronizar codigos territoriais para IBGE quando possivel",
+      "padronizar competencia/periodo para YYYYMM",
+      "padronizar ano para YYYY",
+      "tratar listas de campos no mapa de atributos separadas por ';'"
+    ],
+    "estrategia_resolucao_semantica": [
+      "usar td_bdsus_mapa_atributos como pivô semântico",
+      "resolver papel analítico antes do join físico",
+      "preferir joins por codigo de negocio",
+      "registrar transformacoes aplicadas antes da execução"
+    ],
+    "tipos_join": [
+      "left",
+      "inner",
+      "normalizacao",
+      "lookup_semantico"
+    ]
+  },
+  "drills": {
+    "territorio": {
+      "chave_base_preferencial": "co_municipio_ibge",
+      "niveis": [
+        {
+          "nivel": "municipio",
+          "dataset": "td_territorio",
+          "codigo": "co_municipio_ibge",
+          "rotulo": "no_municipio"
+        },
+        {
+          "nivel": "regiao_saude",
+          "dataset": "td_territorio",
+          "codigo": "co_cir",
+          "rotulo": "no_cir_padrao"
+        },
+        {
+          "nivel": "macrorregiao_saude",
+          "dataset": "td_territorio",
+          "codigo": "co_macrorregional",
+          "rotulo": "no_macrorregional"
+        },
+        {
+          "nivel": "uf",
+          "dataset": "td_territorio",
+          "codigo": "co_uf_ibge",
+          "rotulo": "sg_uf"
+        },
+        {
+          "nivel": "regiao_brasil",
+          "dataset": "td_territorio",
+          "codigo": "co_regiao_brasil",
+          "rotulo": "no_regiao_brasil"
+        }
+      ]
+    },
+    "procedimento": {
+      "chave_base_preferencial": "co_procedimento",
+      "niveis": [
+        {
+          "nivel": "procedimento",
+          "dataset": "tb_procedimento",
+          "codigo": "co_procedimento",
+          "rotulo": "no_procedimento"
+        },
+        {
+          "nivel": "grupo",
+          "dataset": "tb_grupo",
+          "codigo": "co_grupo",
+          "rotulo": "no_grupo"
+        },
+        {
+          "nivel": "subgrupo",
+          "dataset": "tb_sub_grupo",
+          "codigo": [
+            "co_grupo",
+            "co_sub_grupo"
+          ],
+          "rotulo": "no_sub_grupo"
+        },
+        {
+          "nivel": "forma_organizacao",
+          "dataset": "tb_forma_organizacao",
+          "codigo": [
+            "co_grupo",
+            "co_sub_grupo",
+            "co_forma_organizacao"
+          ],
+          "rotulo": "no_forma_organizacao"
+        }
+      ]
+    },
+    "tempo": {
+      "representacoes_aceitas": [
+        "YYYY",
+        "YYYYMM",
+        "YYYY-MM-DD"
+      ],
+      "nivel_padrao": "competencia_mensal"
+    }
+  },
+  "regras_join": [
+    {
+      "id_regra": "join_mapa_territorio_para_td_territorio",
+      "papel": "territorio",
+      "dataset_origem": "td_bdsus_mapa_atributos",
+      "campos_origem_semanticos": [
+        "territorio",
+        "municipio_residencia",
+        "municipio_estabelecimento"
+      ],
+      "dataset_destino": "td_territorio",
+      "tipo_join": "lookup_semantico",
+      "modo_resolucao": "a partir do campo operacional mapeado",
+      "estrategias": [
+        {
+          "quando": "campo operacional representar municipio/codmun/co_municipio/ap_munpcn/id_mn_resi/munic_res/munic_mov/munic",
+          "destino_campo": "co_municipio_ibge",
+          "transformacoes": [
+            "trim",
+            "cast_texto",
+            "left_pad_se_necessario"
+          ]
+        },
+        {
+          "quando": "campo operacional representar UF",
+          "destino_campo": "sg_uf",
+          "transformacoes": [
+            "trim",
+            "upper"
+          ]
+        }
+      ],
+      "drill": "territorio",
+      "observacoes": [
+        "priorizar municipio como unidade de compatibilização",
+        "nem todo campo territorial no mapa representa o mesmo nivel hierarquico"
+      ]
+    },
+    {
+      "id_regra": "join_mapa_procedimento_para_tb_procedimento",
+      "papel": "procedimento",
+      "dataset_origem": "td_bdsus_mapa_atributos",
+      "campos_origem_semanticos": [
+        "procedimento"
+      ],
+      "dataset_destino": "tb_procedimento",
+      "tipo_join": "lookup_semantico",
+      "modo_resolucao": "a partir do campo operacional mapeado",
+      "estrategias": [
+        {
+          "quando": "campo operacional representar codigo SIGTAP",
+          "destino_campo": "co_procedimento",
+          "transformacoes": [
+            "trim",
+            "cast_texto",
+            "left_pad_se_necessario"
+          ]
+        }
+      ],
+      "drill": "procedimento",
+      "observacoes": [
+        "nao converter co_procedimento para inteiro",
+        "preservar zeros a esquerda"
+      ]
+    },
+    {
+      "id_regra": "join_tb_procedimento_para_tb_grupo",
+      "papel": "procedimento_hierarquia",
+      "dataset_origem": "tb_procedimento",
+      "campos_origem": [
+        "co_grupo"
+      ],
+      "dataset_destino": "tb_grupo",
+      "campos_destino": [
+        "co_grupo"
+      ],
+      "tipo_join": "left",
+      "cardinalidade_esperada": "muitos_para_um",
+      "observacoes": [
+        "join para drill por grupo"
+      ]
+    },
+    {
+      "id_regra": "join_tb_procedimento_para_tb_sub_grupo",
+      "papel": "procedimento_hierarquia",
+      "dataset_origem": "tb_procedimento",
+      "campos_origem": [
+        "co_grupo",
+        "co_sub_grupo"
+      ],
+      "dataset_destino": "tb_sub_grupo",
+      "campos_destino": [
+        "co_grupo",
+        "co_sub_grupo"
+      ],
+      "tipo_join": "left",
+      "cardinalidade_esperada": "muitos_para_um",
+      "observacoes": [
+        "join composto"
+      ]
+    },
+    {
+      "id_regra": "join_tb_procedimento_para_tb_forma_organizacao",
+      "papel": "procedimento_hierarquia",
+      "dataset_origem": "tb_procedimento",
+      "campos_origem": [
+        "co_grupo",
+        "co_sub_grupo",
+        "co_forma_organizacao"
+      ],
+      "dataset_destino": "tb_forma_organizacao",
+      "campos_destino": [
+        "co_grupo",
+        "co_sub_grupo",
+        "co_forma_organizacao"
+      ],
+      "tipo_join": "left",
+      "cardinalidade_esperada": "muitos_para_um",
+      "observacoes": [
+        "join composto conforme hierarquia SIGTAP"
+      ]
+    },
+    {
+      "id_regra": "join_td_territorio_para_td_populacao",
+      "papel": "denominador_populacional",
+      "dataset_origem": "td_territorio",
+      "campos_origem": [
+        "co_municipio_ibge"
+      ],
+      "dataset_destino": "td_populacao_ripsa_ano_2025",
+      "campos_destino": [
+        "co_ibge"
+      ],
+      "tipo_join": "left",
+      "cardinalidade_esperada": "um_para_um_ou_muitos_para_um",
+      "observacoes": [
+        "usar para taxas e indicadores com denominador",
+        "validar recortes nao municipais"
+      ]
+    },
+    {
+      "id_regra": "join_mapa_para_populacao_via_territorio",
+      "papel": "denominador_populacional",
+      "dataset_origem": "td_bdsus_mapa_atributos",
+      "campos_origem_semanticos": [
+        "territorio",
+        "municipio_residencia"
+      ],
+      "dataset_destino": "td_populacao_ripsa_ano_2025",
+      "tipo_join": "lookup_semantico",
+      "modo_resolucao": "via td_territorio",
+      "caminho": [
+        {
+          "dataset_intermediario": "td_territorio",
+          "campo_intermediario": "co_municipio_ibge"
+        },
+        {
+          "dataset_destino": "td_populacao_ripsa_ano_2025",
+          "campo_destino": "co_ibge"
+        }
+      ],
+      "observacoes": [
+        "aplicar somente apos normalizacao territorial",
+        "base populacional atual esta rotulada como ano 2025"
+      ]
+    },
+    {
+      "id_regra": "normalizacao_tempo_ano",
+      "papel": "tempo",
+      "dataset_origem": "td_bdsus_mapa_atributos",
+      "campos_origem_semanticos": [
+        "ano"
+      ],
+      "dataset_destino": null,
+      "tipo_join": "normalizacao",
+      "transformacoes": [
+        "extrair_ano",
+        "cast_texto_yyyy"
+      ],
+      "observacoes": [
+        "usar quando a analise for anual"
+      ]
+    },
+    {
+      "id_regra": "normalizacao_tempo_periodo",
+      "papel": "tempo",
+      "dataset_origem": "td_bdsus_mapa_atributos",
+      "campos_origem_semanticos": [
+        "periodo"
+      ],
+      "dataset_destino": null,
+      "tipo_join": "normalizacao",
+      "transformacoes": [
+        "normalizar_para_yyyymm_ou_data"
+      ],
+      "observacoes": [
+        "usar quando a analise for mensal ou baseada em competencia"
+      ]
+    },
+    {
+      "id_regra": "normalizacao_identificadores_codigo",
+      "papel": "normalizacao_codigo",
+      "dataset_origem": "*",
+      "campos_origem_regex": [
+        "^co_",
+        "^sg_",
+        "^nu_autorizacao$",
+        "^nu_cpf$",
+        "^nu_cns$",
+        "^co_procedimento$",
+        "^co_grupo$",
+        "^co_sub_grupo$",
+        "^co_forma_organizacao$",
+        "^co_municipio",
+        "^co_ibge$"
+      ],
+      "dataset_destino": null,
+      "tipo_join": "normalizacao",
+      "transformacoes": [
+        "trim",
+        "cast_texto",
+        "left_pad_conforme_regra_do_dominio"
+      ],
+      "observacoes": [
+        "evitar joins entre inteiro e texto em codigos de negocio",
+        "preservar zeros a esquerda"
+      ]
+    }
+  ],
+  "mapeamento_papeis_para_dimensoes": {
+    "territorio": {
+      "dataset_preferencial": "td_territorio",
+      "chave_preferencial": "co_municipio_ibge"
+    },
+    "procedimento": {
+      "dataset_preferencial": "tb_procedimento",
+      "chave_preferencial": "co_procedimento"
+    },
+    "tempo": {
+      "dataset_preferencial": null,
+      "chave_preferencial": "periodo_normalizado"
+    },
+    "populacao": {
+      "dataset_preferencial": "td_populacao_ripsa_ano_2025",
+      "chave_preferencial": "co_ibge"
+    }
+  },
+  "pendencias_modelagem": [
+    {
+      "id": "pendencia_001",
+      "tema": "tempo",
+      "descricao": "avaliar criação futura de td_tempo para joins temporais explícitos"
+    },
+    {
+      "id": "pendencia_002",
+      "tema": "territorio",
+      "descricao": "explicitar tratamento de RA, distrito e codigos nao-IBGE em td_territorio"
+    },
+    {
+      "id": "pendencia_003",
+      "tema": "mapa_atributos",
+      "descricao": "persistir para cada sistema/subsistema o campo físico exato por papel semântico"
+    },
+    {
+      "id": "pendencia_004",
+      "tema": "sigtap",
+      "descricao": "definir regras formais de padding e tipo textual para co_procedimento e chaves hierárquicas"
+    }
+  ]
+}
