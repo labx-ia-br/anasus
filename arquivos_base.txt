@@ -1,0 +1,14 @@
+contexto.md
+arquitetura_minima.md
+
+catalogo_camadas_fontes.json
+catalogo_regras_join.json
+catalogo_papeis_semanticos.json
+
+app.R
+R/
+  metadados.R
+  validate_spec.R
+  query_builder.R
+  exec_sql.R
+  ui_helpers.R
