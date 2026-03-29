@@ -1,0 +1,1388 @@
+{
+  "projeto": "anaSUS",
+  "tipo": "fichas_indicadores",
+  "versao": "0.1.0",
+  "formato_escolhido": "json",
+  "justificativa_formato": "JSON é coerente com a arquitetura orientada por metadados e com o analysis_spec, preserva hierarquia, campos vazios e futura serialização para Markdown.",
+  "fonte_origem": {
+    "arquivo": "fqi_sindrome_down.docx",
+    "titulo": "Fichas de Qualificação de Indicadores - Síndrome de Down (SD) no Brasil"
+  },
+  "escopo_iteracao": {
+    "preenchido_nesta_iteracao": [
+      "2_ficha_do_indicador"
+    ],
+    "preservado_para_iteracoes_futuras": [
+      "1_introducao",
+      "3_ficha_do_indicador_para_o_cientista_de_dados",
+      "4_apendice"
+    ]
+  },
+  "indicadores": [
+    {
+      "id_indicador": "SD.SINASC.1",
+      "titulo": "Número de nascidos vivos com síndrome de Down",
+      "slug": "sd_sinasc_1",
+      "estrutura": {
+        "1_introducao": {
+          "1.1_endereco_eletronico": "",
+          "1.2_objetivo": ""
+        },
+        "2_ficha_do_indicador": {
+          "2.1_conceituacao": "• Número de nascidos vivos cujo campo 'Anomalia Congênita' na Declaração de Nascido Vivo (DNV) esteja preenchido com os códigos CID-10 Q90 a Q90.9 (Síndrome de Down), em um local e ano de referência.",
+          "2.2_interpretacao": "• Mensura a frequência absoluta de nascimentos com síndrome de Down registrados no SINASC.\n• Permite estimar os números absolutos da condição ao nascimento e subsidiar o planejamento de serviços de saúde e reabilitação.\n• Variações no número podem refletir mudanças reais na ocorrência da condição, melhorias no preenchimento das DNVs ou mudanças no acesso ao diagnóstico pré-natal.",
+          "2.3_usos": "• Monitorar tendências temporais e distribuição geográfica dos nascimentos com síndrome de Down.\n• Subsidiar o planejamento de serviços especializados (genética, cardiologia pediátrica, reabilitação).\n• Avaliar a completitude do campo 'Anomalia Congênita' nas DNVs.",
+          "2.4_limitacoes": "• Subenumeração: a completitude do campo 'Anomalia Congênita' na DNV é variável entre municípios e UFs, sendo frequentemente subpreenchida.\n• Diagnóstico tardio: casos leves ou sem diagnóstico citogenético confirmado ao nascimento podem não ser registrados.\n• O campo não distingue variantes citogenéticas (trissomia livre, translocação, mosaicismo).\n• Não captura nascimentos ocorridos fora do sistema hospitalar sem registro formal.",
+          "2.5_fontes": "SINASC – Sistema de Informações sobre Nascidos Vivos (DATASUS/MS)",
+          "2.6_metodos_de_calculo": {
+            "formula": "Somatório de nascidos vivos com CID-10 Q90–Q90.9 no campo de anomalia congênita",
+            "numerador": "Número de DNVs com anomalia congênita Q90–Q90.9 registradas no SINASC, em um local e ano de referência",
+            "denominador": "Não se aplica (número absoluto)",
+            "multiplicador": "Não se aplica"
+          },
+          "2.7_categorias_sugeridas_para_analise": "• Sexo\n• Faixa etária materna\n• Unidade da Federação (UF)\n• Município de residência da mãe\n• Ano de nascimento",
+          "2.8_dados_estatisticos_e_comentarios": "GRANULARIDADE: Município, Unidade da Federação, Regiões, Brasil\nPERIODICIDADE DE ATUALIZAÇÃO: Anual\nRESPONSABILIDADE GERENCIAL: Coordenação-Geral de Informações e Análises Epidemiológicas (CGIAE/DAENT/SVSA/MS)",
+          "2.9_literatura_relacionada": ""
+        },
+        "3_ficha_do_indicador_para_o_cientista_de_dados": {
+          "3.1_metodo_de_processamento_de_dados": "",
+          "3.2_metodo_de_processamento_analitico": "",
+          "3.3_metodo_de_apresentacao_de_dados": "",
+          "3.4_metodo_de_analise_matematica_e_estatistica": "",
+          "3.5_metodo_de_descoberta_de_conhecimento_em_bancos_de_dados_kdd": "",
+          "3.6_base_de_dados": ""
+        },
+        "4_apendice": {
+          "4.1_ver_tambem": "",
+          "4.2_ligacoes_externas": ""
+        }
+      }
+    },
+    {
+      "id_indicador": "SD.SINASC.2",
+      "titulo": "Taxa de nascidos vivos com síndrome de Down por 10.000 nascimentos",
+      "slug": "sd_sinasc_2",
+      "estrutura": {
+        "1_introducao": {
+          "1.1_endereco_eletronico": "",
+          "1.2_objetivo": ""
+        },
+        "2_ficha_do_indicador": {
+          "2.1_conceituacao": "• Número de nascidos vivos com síndrome de Down (CID-10 Q90–Q90.9) por 10.000 nascidos vivos totais, em um local e ano de referência.",
+          "2.2_interpretacao": "• Estima a prevalência ao nascimento da síndrome de Down na população.\n• Permite comparações entre municípios, UFs e períodos distintos, controlando para o volume total de nascimentos.\n• A taxa esperada na população geral gira em torno de 14 a 21 casos por 10.000 nascidos vivos, variando conforme a estrutura etária materna.",
+          "2.3_usos": "• Comparar regiões e períodos quanto à frequência de nascimentos com síndrome de Down.\n• Avaliar o impacto do envelhecimento materno sobre a taxa de SD ao nascimento.\n• Subsidiar metas de cobertura de serviços especializados.",
+          "2.4_limitacoes": "• Dependente da qualidade do preenchimento do campo 'Anomalia Congênita' na DNV.\n• Para municípios com poucos nascimentos, a taxa pode ser instável estatisticamente.\n• Não distingue variantes citogenéticas da síndrome de Down.",
+          "2.5_fontes": "SINASC – Sistema de Informações sobre Nascidos Vivos (DATASUS/MS)",
+          "2.6_metodos_de_calculo": {
+            "formula": "(Nº de nascidos vivos com Q90–Q90.9 / Nº total de nascidos vivos) × 10.000",
+            "numerador": "Número de DNVs com anomalia congênita Q90–Q90.9 no SINASC, em um local e ano de referência",
+            "denominador": "Número total de nascidos vivos registrados no SINASC, no mesmo local e período",
+            "multiplicador": "10.000"
+          },
+          "2.7_categorias_sugeridas_para_analise": "• Faixa etária materna (especialmente ≥35 anos)\n• Sexo do nascido vivo\n• Município e UF de residência materna",
+          "2.8_dados_estatisticos_e_comentarios": "GRANULARIDADE: Município (cautela para pequenos municípios), UF, Regiões, Brasil\nPERIODICIDADE DE ATUALIZAÇÃO: Anual\nRESPONSABILIDADE GERENCIAL: CGIAE/DAENT/SVSA/MS",
+          "2.9_literatura_relacionada": ""
+        },
+        "3_ficha_do_indicador_para_o_cientista_de_dados": {
+          "3.1_metodo_de_processamento_de_dados": "",
+          "3.2_metodo_de_processamento_analitico": "",
+          "3.3_metodo_de_apresentacao_de_dados": "",
+          "3.4_metodo_de_analise_matematica_e_estatistica": "",
+          "3.5_metodo_de_descoberta_de_conhecimento_em_bancos_de_dados_kdd": "",
+          "3.6_base_de_dados": ""
+        },
+        "4_apendice": {
+          "4.1_ver_tambem": "",
+          "4.2_ligacoes_externas": ""
+        }
+      }
+    },
+    {
+      "id_indicador": "SD.SINASC.3",
+      "titulo": "Proporção de partos em mães com idade ≥35 anos entre nascidos vivos com e sem síndrome de Down",
+      "slug": "sd_sinasc_3",
+      "estrutura": {
+        "1_introducao": {
+          "1.1_endereco_eletronico": "",
+          "1.2_objetivo": ""
+        },
+        "2_ficha_do_indicador": {
+          "2.1_conceituacao": "• Proporção de nascidos vivos cujas mães tinham idade ≥35 anos no momento do parto, calculada separadamente para nascidos com síndrome de Down (CID-10 Q90–Q90.9) e sem a condição, em um local e ano de referência.",
+          "2.2_interpretacao": "• A idade materna avançada (≥35 anos) é o principal fator de risco para a ocorrência de trissomia do cromossomo 21.\n• A comparação das proporções entre grupos com e sem SD evidencia o peso do fator etário materno na distribuição da condição.\n• Permite monitorar tendências demográficas relevantes para políticas de aconselhamento genético e rastreamento pré-natal.",
+          "2.3_usos": "• Avaliar a associação entre envelhecimento materno e prevalência de SD ao nascimento.\n• Subsidiar políticas de rastreamento pré-natal (ex: oferta de exames para gestantes ≥35 anos).\n• Monitorar mudanças no perfil etário das gestações ao longo do tempo.",
+          "2.4_limitacoes": "• Para grupos com SD em municípios pequenos, o número absoluto pode ser insuficiente para estimativas estáveis.\n• Dependente da qualidade do registro de idade materna e do campo de anomalia congênita nas DNVs.",
+          "2.5_fontes": "SINASC – Sistema de Informações sobre Nascidos Vivos (DATASUS/MS)",
+          "2.6_metodos_de_calculo": {
+            "formula": "(Nº de nascidos vivos com mãe ≥35 anos / Nº total de nascidos vivos) × 100, estratificado por presença/ausência de SD",
+            "numerador": "Número de DNVs com idade materna ≥35 anos, em um local e ano de referência, para cada grupo (com SD e sem SD)",
+            "denominador": "Número total de DNVs no respectivo grupo (com SD ou sem SD), no mesmo local e período",
+            "multiplicador": "100"
+          },
+          "2.7_categorias_sugeridas_para_analise": "• Faixa etária materna\n• Presença de síndrome de Down (Q90–Q90.9 vs. ausência)\n• UF e município de residência materna",
+          "2.8_dados_estatisticos_e_comentarios": "GRANULARIDADE: UF, Regiões, Brasil\nPERIODICIDADE DE ATUALIZAÇÃO: Anual\nRESPONSABILIDADE GERENCIAL: CGIAE/DAENT/SVSA/MS",
+          "2.9_literatura_relacionada": ""
+        },
+        "3_ficha_do_indicador_para_o_cientista_de_dados": {
+          "3.1_metodo_de_processamento_de_dados": "",
+          "3.2_metodo_de_processamento_analitico": "",
+          "3.3_metodo_de_apresentacao_de_dados": "",
+          "3.4_metodo_de_analise_matematica_e_estatistica": "",
+          "3.5_metodo_de_descoberta_de_conhecimento_em_bancos_de_dados_kdd": "",
+          "3.6_base_de_dados": ""
+        },
+        "4_apendice": {
+          "4.1_ver_tambem": "",
+          "4.2_ligacoes_externas": ""
+        }
+      }
+    },
+    {
+      "id_indicador": "SD.SINASC.4",
+      "titulo": "Proporção de partos por tipo (vaginal/cesáreo) em nascidos vivos com síndrome de Down",
+      "slug": "sd_sinasc_4",
+      "estrutura": {
+        "1_introducao": {
+          "1.1_endereco_eletronico": "",
+          "1.2_objetivo": ""
+        },
+        "2_ficha_do_indicador": {
+          "2.1_conceituacao": "• Proporção de nascimentos por tipo de parto (vaginal ou cesáreo) entre nascidos vivos com síndrome de Down (CID-10 Q90–Q90.9), em um local e ano de referência.",
+          "2.2_interpretacao": "• Permite avaliar se há diferença na via de parto de crianças com SD em relação à população geral.\n• Alta taxa de cesarianas pode indicar intervenção eletiva em diagnósticos pré-natais confirmados ou características clínicas associadas à SD.",
+          "2.3_usos": "• Monitorar a utilização de procedimentos obstétricos em gestações com diagnóstico pré-natal de SD.\n• Subsidiar análises sobre qualidade da assistência obstétrica para gestações de risco.",
+          "2.4_limitacoes": "• Não é possível distinguir, pelo SINASC, se a cesárea foi indicada em função da SD ou por outro motivo obstétrico.\n• Subnotificação do campo de anomalia congênita pode subestimar o número de casos.",
+          "2.5_fontes": "SINASC – Sistema de Informações sobre Nascidos Vivos (DATASUS/MS)",
+          "2.6_metodos_de_calculo": {
+            "formula": "(Nº de nascidos vivos com SD por tipo de parto / Nº total de nascidos vivos com SD) × 100",
+            "numerador": "Número de DNVs com Q90–Q90.9 segundo tipo de parto (vaginal ou cesáreo)",
+            "denominador": "Total de nascidos vivos com Q90–Q90.9",
+            "multiplicador": "100"
+          },
+          "2.7_categorias_sugeridas_para_analise": "• Tipo de parto (vaginal/cesáreo)\n• Faixa etária materna\n• Tipo de estabelecimento (público/privado)\n• UF",
+          "2.8_dados_estatisticos_e_comentarios": "GRANULARIDADE: UF, Regiões, Brasil\nPERIODICIDADE DE ATUALIZAÇÃO: Anual\nRESPONSABILIDADE GERENCIAL: CGIAE/DAENT/SVSA/MS",
+          "2.9_literatura_relacionada": ""
+        },
+        "3_ficha_do_indicador_para_o_cientista_de_dados": {
+          "3.1_metodo_de_processamento_de_dados": "",
+          "3.2_metodo_de_processamento_analitico": "",
+          "3.3_metodo_de_apresentacao_de_dados": "",
+          "3.4_metodo_de_analise_matematica_e_estatistica": "",
+          "3.5_metodo_de_descoberta_de_conhecimento_em_bancos_de_dados_kdd": "",
+          "3.6_base_de_dados": ""
+        },
+        "4_apendice": {
+          "4.1_ver_tambem": "",
+          "4.2_ligacoes_externas": ""
+        }
+      }
+    },
+    {
+      "id_indicador": "SD.SINASC.5",
+      "titulo": "Escolaridade da mãe de nascidos vivos com síndrome de Down",
+      "slug": "sd_sinasc_5",
+      "estrutura": {
+        "1_introducao": {
+          "1.1_endereco_eletronico": "",
+          "1.2_objetivo": ""
+        },
+        "2_ficha_do_indicador": {
+          "2.1_conceituacao": "• Distribuição dos nascidos vivos com síndrome de Down (CID-10 Q90–Q90.9) segundo o nível de escolaridade da mãe, conforme registrado na Declaração de Nascido Vivo.",
+          "2.2_interpretacao": "• A escolaridade materna é um proxy de condições socioeconômicas e pode influenciar o acesso ao diagnóstico pré-natal e à assistência especializada.\n• Permite identificar vulnerabilidades sociais associadas ao nascimento de crianças com SD.",
+          "2.3_usos": "• Caracterizar o perfil socioeconômico das famílias de crianças com SD.\n• Subsidiar políticas de equidade no acesso ao diagnóstico pré-natal e ao cuidado especializado.",
+          "2.4_limitacoes": "• Elevada proporção de campos em branco ou preenchimento 'ignorado' pode comprometer a representatividade.\n• Dependente da qualidade do registro nos estabelecimentos de saúde.",
+          "2.5_fontes": "SINASC – Sistema de Informações sobre Nascidos Vivos (DATASUS/MS)",
+          "2.6_metodos_de_calculo": {
+            "formula": "(Nº de nascidos vivos com SD por categoria de escolaridade materna / Total de nascidos vivos com SD) × 100",
+            "numerador": "Número de DNVs com Q90–Q90.9 em cada categoria de escolaridade materna",
+            "denominador": "Total de nascidos vivos com Q90–Q90.9",
+            "multiplicador": "100"
+          },
+          "2.7_categorias_sugeridas_para_analise": "• Nível de escolaridade materna (categorias do SINASC)\n• UF\n• Faixa etária materna",
+          "2.8_dados_estatisticos_e_comentarios": "GRANULARIDADE: UF, Regiões, Brasil\nPERIODICIDADE DE ATUALIZAÇÃO: Anual\nRESPONSABILIDADE GERENCIAL: CGIAE/DAENT/SVSA/MS",
+          "2.9_literatura_relacionada": ""
+        },
+        "3_ficha_do_indicador_para_o_cientista_de_dados": {
+          "3.1_metodo_de_processamento_de_dados": "",
+          "3.2_metodo_de_processamento_analitico": "",
+          "3.3_metodo_de_apresentacao_de_dados": "",
+          "3.4_metodo_de_analise_matematica_e_estatistica": "",
+          "3.5_metodo_de_descoberta_de_conhecimento_em_bancos_de_dados_kdd": "",
+          "3.6_base_de_dados": ""
+        },
+        "4_apendice": {
+          "4.1_ver_tambem": "",
+          "4.2_ligacoes_externas": ""
+        }
+      }
+    },
+    {
+      "id_indicador": "SD.SINASC.6",
+      "titulo": "Proporção de nascidos vivos com síndrome de Down cujas mães realizaram ≥8 consultas de pré-natal",
+      "slug": "sd_sinasc_6",
+      "estrutura": {
+        "1_introducao": {
+          "1.1_endereco_eletronico": "",
+          "1.2_objetivo": ""
+        },
+        "2_ficha_do_indicador": {
+          "2.1_conceituacao": "• Proporção de nascidos vivos com síndrome de Down (CID-10 Q90–Q90.9) cujas mães realizaram 8 ou mais consultas de pré-natal, conforme registrado na DNV, em um local e ano de referência.",
+          "2.2_interpretacao": "• O número de consultas pré-natais é um indicador de qualidade da atenção pré-natal.\n• Gestantes com maior número de consultas têm maior probabilidade de diagnóstico pré-natal da SD e acesso a aconselhamento genético.\n• Permite avaliar a adequação do pré-natal entre gestações com diagnóstico ou risco de SD.",
+          "2.3_usos": "• Avaliar a qualidade do acompanhamento pré-natal em gestações com SD.\n• Subsidiar programas de qualificação da atenção pré-natal, especialmente para gestantes de risco.",
+          "2.4_limitacoes": "• O número de consultas não informa sobre a qualidade do conteúdo dessas consultas.\n• Subnotificação do campo de anomalia congênita pode subestimar o denominador.",
+          "2.5_fontes": "SINASC – Sistema de Informações sobre Nascidos Vivos (DATASUS/MS)",
+          "2.6_metodos_de_calculo": {
+            "formula": "(Nº de nascidos vivos com SD com ≥8 consultas pré-natal / Total de nascidos vivos com SD) × 100",
+            "numerador": "Número de DNVs com Q90–Q90.9 com número de consultas pré-natais ≥8",
+            "denominador": "Total de nascidos vivos com Q90–Q90.9",
+            "multiplicador": "100"
+          },
+          "2.7_categorias_sugeridas_para_analise": "• Número de consultas pré-natal (categorias do SINASC)\n• Faixa etária materna\n• Tipo de estabelecimento\n• UF",
+          "2.8_dados_estatisticos_e_comentarios": "GRANULARIDADE: UF, Regiões, Brasil\nPERIODICIDADE DE ATUALIZAÇÃO: Anual\nRESPONSABILIDADE GERENCIAL: CGIAE/DAENT/SVSA/MS",
+          "2.9_literatura_relacionada": ""
+        },
+        "3_ficha_do_indicador_para_o_cientista_de_dados": {
+          "3.1_metodo_de_processamento_de_dados": "",
+          "3.2_metodo_de_processamento_analitico": "",
+          "3.3_metodo_de_apresentacao_de_dados": "",
+          "3.4_metodo_de_analise_matematica_e_estatistica": "",
+          "3.5_metodo_de_descoberta_de_conhecimento_em_bancos_de_dados_kdd": "",
+          "3.6_base_de_dados": ""
+        },
+        "4_apendice": {
+          "4.1_ver_tambem": "",
+          "4.2_ligacoes_externas": ""
+        }
+      }
+    },
+    {
+      "id_indicador": "SD.SINASC.7",
+      "titulo": "Proporção de nascidos vivos com síndrome de Down por tipo de estabelecimento de saúde (público/privado)",
+      "slug": "sd_sinasc_7",
+      "estrutura": {
+        "1_introducao": {
+          "1.1_endereco_eletronico": "",
+          "1.2_objetivo": ""
+        },
+        "2_ficha_do_indicador": {
+          "2.1_conceituacao": "• Distribuição dos nascidos vivos com síndrome de Down (CID-10 Q90–Q90.9) segundo o tipo de estabelecimento onde ocorreu o parto (público ou privado), em um local e ano de referência.",
+          "2.2_interpretacao": "• Reflete o perfil de acesso aos serviços de saúde de famílias de crianças com SD.\n• Permite avaliar a distribuição da demanda entre setores público e privado.",
+          "2.3_usos": "• Identificar o peso relativo do SUS e do setor privado no atendimento a gestações com SD.\n• Subsidiar o planejamento de serviços especializados pós-natal em cada setor.",
+          "2.4_limitacoes": "• A classificação público/privado pode não capturar adequadamente estabelecimentos filantrópicos com contrato SUS.\n• Subenumeração do campo de anomalia congênita pode afetar os resultados.",
+          "2.5_fontes": "SINASC – Sistema de Informações sobre Nascidos Vivos (DATASUS/MS)",
+          "2.6_metodos_de_calculo": {
+            "formula": "(Nº de nascidos vivos com SD por tipo de estabelecimento / Total de nascidos vivos com SD) × 100",
+            "numerador": "Número de DNVs com Q90–Q90.9 por tipo de estabelecimento (público ou privado)",
+            "denominador": "Total de nascidos vivos com Q90–Q90.9",
+            "multiplicador": "100"
+          },
+          "2.7_categorias_sugeridas_para_analise": "• Tipo de estabelecimento (público/privado)\n• UF\n• Município",
+          "2.8_dados_estatisticos_e_comentarios": "GRANULARIDADE: UF, Regiões, Brasil\nPERIODICIDADE DE ATUALIZAÇÃO: Anual\nRESPONSABILIDADE GERENCIAL: CGIAE/DAENT/SVSA/MS",
+          "2.9_literatura_relacionada": ""
+        },
+        "3_ficha_do_indicador_para_o_cientista_de_dados": {
+          "3.1_metodo_de_processamento_de_dados": "",
+          "3.2_metodo_de_processamento_analitico": "",
+          "3.3_metodo_de_apresentacao_de_dados": "",
+          "3.4_metodo_de_analise_matematica_e_estatistica": "",
+          "3.5_metodo_de_descoberta_de_conhecimento_em_bancos_de_dados_kdd": "",
+          "3.6_base_de_dados": ""
+        },
+        "4_apendice": {
+          "4.1_ver_tambem": "",
+          "4.2_ligacoes_externas": ""
+        }
+      }
+    },
+    {
+      "id_indicador": "SD.SIM.1",
+      "titulo": "Número de óbitos com causa básica ou associada por síndrome de Down",
+      "slug": "sd_sim_1",
+      "estrutura": {
+        "1_introducao": {
+          "1.1_endereco_eletronico": "",
+          "1.2_objetivo": ""
+        },
+        "2_ficha_do_indicador": {
+          "2.1_conceituacao": "• Número de óbitos registrados cuja causa básica ou uma das causas associadas seja síndrome de Down (CID-10 Q90–Q90.9), em um local e ano de referência.",
+          "2.2_interpretacao": "• Quantifica a mortalidade relacionada à síndrome de Down, incluindo tanto os casos em que a SD é a causa básica quanto aqueles em que aparece como condição associada.\n• Permite estimar a incidência de mortalidade direta e indiretamente relacionada à SD na população.",
+          "2.3_usos": "• Monitorar a evolução temporal da mortalidade associada à SD.\n• Subsidiar políticas de atenção integral às pessoas com SD.",
+          "2.4_limitacoes": "• A síndrome de Down frequentemente aparece como causa associada e não como causa básica, podendo resultar em subcontagem se apenas a causa básica for considerada.\n• Qualidade do preenchimento das Declarações de Óbito varia entre regiões e estabelecimentos.",
+          "2.5_fontes": "SIM – Sistema de Informação sobre Mortalidade (DATASUS/MS)",
+          "2.6_metodos_de_calculo": {
+            "formula": "Somatório de óbitos com Q90–Q90.9 como causa básica ou associada",
+            "numerador": "Número de declarações de óbito (DO) com Q90–Q90.9 como causa básica ou associada, em um local e ano de referência",
+            "denominador": "Não se aplica (número absoluto)",
+            "multiplicador": "Não se aplica"
+          },
+          "2.7_categorias_sugeridas_para_analise": "• Causa básica vs. causa associada\n• Faixa etária\n• Sexo\n• UF de residência",
+          "2.8_dados_estatisticos_e_comentarios": "GRANULARIDADE: Município, UF, Regiões, Brasil\nPERIODICIDADE DE ATUALIZAÇÃO: Anual\nRESPONSABILIDADE GERENCIAL: CGIAE/DAENT/SVSA/MS",
+          "2.9_literatura_relacionada": ""
+        },
+        "3_ficha_do_indicador_para_o_cientista_de_dados": {
+          "3.1_metodo_de_processamento_de_dados": "",
+          "3.2_metodo_de_processamento_analitico": "",
+          "3.3_metodo_de_apresentacao_de_dados": "",
+          "3.4_metodo_de_analise_matematica_e_estatistica": "",
+          "3.5_metodo_de_descoberta_de_conhecimento_em_bancos_de_dados_kdd": "",
+          "3.6_base_de_dados": ""
+        },
+        "4_apendice": {
+          "4.1_ver_tambem": "",
+          "4.2_ligacoes_externas": ""
+        }
+      }
+    },
+    {
+      "id_indicador": "SD.SIM.2",
+      "titulo": "Taxa de mortalidade de pessoas com síndrome de Down por faixa etária e causa básica",
+      "slug": "sd_sim_2",
+      "estrutura": {
+        "1_introducao": {
+          "1.1_endereco_eletronico": "",
+          "1.2_objetivo": ""
+        },
+        "2_ficha_do_indicador": {
+          "2.1_conceituacao": "• Número de óbitos de pessoas com síndrome de Down (CID-10 Q90–Q90.9 como causa básica ou associada) por faixa etária, por 100.000 pessoas com SD estimadas, em um local e ano de referência.",
+          "2.2_interpretacao": "• Permite identificar as faixas etárias de maior risco de morte entre pessoas com SD.\n• Subsidia o planejamento de intervenções preventivas e assistenciais ao longo do ciclo de vida.",
+          "2.3_usos": "• Comparar o risco de morte entre faixas etárias e ao longo do tempo.\n• Identificar causas básicas prevalentes por faixa etária para direcionar ações preventivas.",
+          "2.4_limitacoes": "• A ausência de estimativas populacionais confiáveis de pessoas com SD por faixa etária dificulta o cálculo de taxas precisas.\n• Subenumeração de óbitos com SD em regiões com baixa cobertura do SIM.",
+          "2.5_fontes": "SIM – Sistema de Informação sobre Mortalidade (DATASUS/MS)",
+          "2.6_metodos_de_calculo": {
+            "formula": "(Nº de óbitos com SD em cada faixa etária / População estimada com SD na respectiva faixa etária) × 100.000",
+            "numerador": "Número de óbitos com Q90–Q90.9 (causa básica ou associada) na respectiva faixa etária",
+            "denominador": "Estimativa da população com síndrome de Down na respectiva faixa etária",
+            "multiplicador": "100.000"
+          },
+          "2.7_categorias_sugeridas_para_analise": "• Faixa etária (&lt;1, 1–4, 5–14, 15–29, 30–49, 50 e mais)\n• Sexo\n• Causa básica\n• UF",
+          "2.8_dados_estatisticos_e_comentarios": "GRANULARIDADE: UF, Regiões, Brasil\nPERIODICIDADE DE ATUALIZAÇÃO: Anual\nRESPONSABILIDADE GERENCIAL: CGIAE/DAENT/SVSA/MS",
+          "2.9_literatura_relacionada": ""
+        },
+        "3_ficha_do_indicador_para_o_cientista_de_dados": {
+          "3.1_metodo_de_processamento_de_dados": "",
+          "3.2_metodo_de_processamento_analitico": "",
+          "3.3_metodo_de_apresentacao_de_dados": "",
+          "3.4_metodo_de_analise_matematica_e_estatistica": "",
+          "3.5_metodo_de_descoberta_de_conhecimento_em_bancos_de_dados_kdd": "",
+          "3.6_base_de_dados": ""
+        },
+        "4_apendice": {
+          "4.1_ver_tambem": "",
+          "4.2_ligacoes_externas": ""
+        }
+      }
+    },
+    {
+      "id_indicador": "SD.SIM.3",
+      "titulo": "Taxa de mortalidade infantil associada à síndrome de Down",
+      "slug": "sd_sim_3",
+      "estrutura": {
+        "1_introducao": {
+          "1.1_endereco_eletronico": "",
+          "1.2_objetivo": ""
+        },
+        "2_ficha_do_indicador": {
+          "2.1_conceituacao": "• Número de óbitos em menores de 1 ano de idade com síndrome de Down (CID-10 Q90–Q90.9 como causa básica ou associada), por mil nascidos vivos com SD, em um local e ano de referência.",
+          "2.2_interpretacao": "• Estima o risco de morte no primeiro ano de vida entre crianças com SD.\n• Cardiopatias congênitas são as principais causas de mortalidade infantil nessa população.\n• A redução da taxa ao longo do tempo reflete melhorias no acesso à cirurgia cardíaca e cuidados neonatais.",
+          "2.3_usos": "• Monitorar a evolução do risco de morte no primeiro ano de vida entre crianças com SD.\n• Avaliar o impacto de intervenções cirúrgicas e de programas de atenção neonatal especializada.",
+          "2.4_limitacoes": "• Subnotificação nos dois sistemas (SIM e SINASC) pode comprometer o indicador.\n• Para estados com poucos nascimentos com SD, o indicador pode ser instável.",
+          "2.5_fontes": "SIM – Sistema de Informação sobre Mortalidade (DATASUS/MS)",
+          "2.6_metodos_de_calculo": {
+            "formula": "(Nº de óbitos em &lt;1 ano com Q90–Q90.9 / Nº de nascidos vivos com Q90–Q90.9) × 1.000",
+            "numerador": "Número de óbitos em menores de 1 ano com Q90–Q90.9 (causa básica ou associada) no SIM",
+            "denominador": "Número de nascidos vivos com Q90–Q90.9 registrados no SINASC",
+            "multiplicador": "1.000"
+          },
+          "2.7_categorias_sugeridas_para_analise": "• Causa básica (especialmente cardiopatias congênitas Q20–Q28)\n• Sexo\n• UF de residência",
+          "2.8_dados_estatisticos_e_comentarios": "GRANULARIDADE: UF, Regiões, Brasil\nPERIODICIDADE DE ATUALIZAÇÃO: Anual\nRESPONSABILIDADE GERENCIAL: CGIAE/DAENT/SVSA/MS",
+          "2.9_literatura_relacionada": ""
+        },
+        "3_ficha_do_indicador_para_o_cientista_de_dados": {
+          "3.1_metodo_de_processamento_de_dados": "",
+          "3.2_metodo_de_processamento_analitico": "",
+          "3.3_metodo_de_apresentacao_de_dados": "",
+          "3.4_metodo_de_analise_matematica_e_estatistica": "",
+          "3.5_metodo_de_descoberta_de_conhecimento_em_bancos_de_dados_kdd": "",
+          "3.6_base_de_dados": ""
+        },
+        "4_apendice": {
+          "4.1_ver_tambem": "",
+          "4.2_ligacoes_externas": ""
+        }
+      }
+    },
+    {
+      "id_indicador": "SD.SIM.4",
+      "titulo": "Causas múltiplas associadas em óbitos com síndrome de Down",
+      "slug": "sd_sim_4",
+      "estrutura": {
+        "1_introducao": {
+          "1.1_endereco_eletronico": "",
+          "1.2_objetivo": ""
+        },
+        "2_ficha_do_indicador": {
+          "2.1_conceituacao": "• Distribuição das causas múltiplas de morte registradas nas Declarações de Óbito de pessoas com síndrome de Down (Q90–Q90.9), incluindo cardiopatias congênitas (Q20–Q28), infecções respiratórias (J09–J22) e outras condições associadas.",
+          "2.2_interpretacao": "• As causas múltiplas oferecem um panorama mais completo da cadeia fisiopatológica que leva ao óbito em pessoas com SD.\n• Cardiopatias congênitas e infecções respiratórias são as comorbidades mais frequentemente associadas aos óbitos em pessoas com SD.",
+          "2.3_usos": "• Identificar as comorbidades mais letais em pessoas com SD para direcionar intervenções preventivas e assistenciais.\n• Subsidiar protocolos de acompanhamento clínico multidisciplinar.",
+          "2.4_limitacoes": "• A qualidade do preenchimento das causas múltiplas nas DOs é variável.\n• Médicos podem não mencionar a SD quando ela não é considerada relevante para o óbito.",
+          "2.5_fontes": "SIM – Sistema de Informação sobre Mortalidade (DATASUS/MS)",
+          "2.6_metodos_de_calculo": {
+            "formula": "Frequência e proporção de cada causa associada no total de óbitos com Q90–Q90.9",
+            "numerador": "Número de DOs com Q90–Q90.9 que também registram a causa associada de interesse",
+            "denominador": "Total de DOs com Q90–Q90.9",
+            "multiplicador": "100"
+          },
+          "2.7_categorias_sugeridas_para_analise": "• Causa associada (por capítulo e categoria CID-10)\n• Faixa etária\n• Sexo\n• UF",
+          "2.8_dados_estatisticos_e_comentarios": "GRANULARIDADE: UF, Regiões, Brasil\nPERIODICIDADE DE ATUALIZAÇÃO: Anual\nRESPONSABILIDADE GERENCIAL: CGIAE/DAENT/SVSA/MS",
+          "2.9_literatura_relacionada": ""
+        },
+        "3_ficha_do_indicador_para_o_cientista_de_dados": {
+          "3.1_metodo_de_processamento_de_dados": "",
+          "3.2_metodo_de_processamento_analitico": "",
+          "3.3_metodo_de_apresentacao_de_dados": "",
+          "3.4_metodo_de_analise_matematica_e_estatistica": "",
+          "3.5_metodo_de_descoberta_de_conhecimento_em_bancos_de_dados_kdd": "",
+          "3.6_base_de_dados": ""
+        },
+        "4_apendice": {
+          "4.1_ver_tambem": "",
+          "4.2_ligacoes_externas": ""
+        }
+      }
+    },
+    {
+      "id_indicador": "SD.SIM.5",
+      "titulo": "Local de ocorrência dos óbitos com síndrome de Down",
+      "slug": "sd_sim_5",
+      "estrutura": {
+        "1_introducao": {
+          "1.1_endereco_eletronico": "",
+          "1.2_objetivo": ""
+        },
+        "2_ficha_do_indicador": {
+          "2.1_conceituacao": "• Distribuição dos óbitos de pessoas com síndrome de Down (CID-10 Q90–Q90.9) segundo o local de ocorrência (hospital, domicílio, via pública, outro), em um local e ano de referência.",
+          "2.2_interpretacao": "• O local de ocorrência reflete o acesso e a utilização de serviços de saúde no momento da morte.\n• Alta proporção de óbitos domiciliares pode indicar barreiras de acesso ou opção por cuidados paliativos no domicílio.",
+          "2.3_usos": "• Avaliar o padrão de acesso a serviços de saúde entre pessoas com SD no momento do óbito.\n• Subsidiar políticas de cuidados paliativos e atenção domiciliar.",
+          "2.4_limitacoes": "• O campo de local de ocorrência pode estar preenchido de forma inadequada em alguns sistemas.\n• Não informa sobre as circunstâncias que levaram ao óbito fora do hospital.",
+          "2.5_fontes": "SIM – Sistema de Informação sobre Mortalidade (DATASUS/MS)",
+          "2.6_metodos_de_calculo": {
+            "formula": "(Nº de óbitos com SD por local de ocorrência / Total de óbitos com SD) × 100",
+            "numerador": "Número de DOs com Q90–Q90.9 por local de ocorrência",
+            "denominador": "Total de DOs com Q90–Q90.9",
+            "multiplicador": "100"
+          },
+          "2.7_categorias_sugeridas_para_analise": "• Local de ocorrência (hospital, domicílio, via pública, outro)\n• Faixa etária\n• Sexo\n• UF",
+          "2.8_dados_estatisticos_e_comentarios": "GRANULARIDADE: UF, Regiões, Brasil\nPERIODICIDADE DE ATUALIZAÇÃO: Anual\nRESPONSABILIDADE GERENCIAL: CGIAE/DAENT/SVSA/MS",
+          "2.9_literatura_relacionada": ""
+        },
+        "3_ficha_do_indicador_para_o_cientista_de_dados": {
+          "3.1_metodo_de_processamento_de_dados": "",
+          "3.2_metodo_de_processamento_analitico": "",
+          "3.3_metodo_de_apresentacao_de_dados": "",
+          "3.4_metodo_de_analise_matematica_e_estatistica": "",
+          "3.5_metodo_de_descoberta_de_conhecimento_em_bancos_de_dados_kdd": "",
+          "3.6_base_de_dados": ""
+        },
+        "4_apendice": {
+          "4.1_ver_tambem": "",
+          "4.2_ligacoes_externas": ""
+        }
+      }
+    },
+    {
+      "id_indicador": "SD.SIM.6",
+      "titulo": "Óbitos por causas externas em pessoas com síndrome de Down (agressões, acidentes, causas indeterminadas e complicações de atenção à saúde)",
+      "slug": "sd_sim_6",
+      "estrutura": {
+        "1_introducao": {
+          "1.1_endereco_eletronico": "",
+          "1.2_objetivo": ""
+        },
+        "2_ficha_do_indicador": {
+          "2.1_conceituacao": "• Número e proporção de óbitos de pessoas com síndrome de Down (Q90–Q90.9 como causa associada) segundo as seguintes categorias de causas externas (CID-10): agressões (X85–Y09), eventos de intenção indeterminada (Y10–Y34), complicações de atenção à saúde (Y40–Y84) e acidentes (W00–X59, incluindo quedas, queimaduras e afogamentos).",
+          "2.2_interpretacao": "• Pessoas com SD são particularmente vulneráveis a violências e negligências, especialmente em contextos institucionais.\n• As complicações de atenção à saúde indicam riscos iatrogênicos associados ao cuidado.\n• A análise dessas categorias subsidia a identificação de vulnerabilidades específicas da população com SD.",
+          "2.3_usos": "• Monitorar a violência, negligência e acidentes em pessoas com SD.\n• Identificar falhas no sistema de proteção e cuidado de pessoas com SD.\n• Subsidiar políticas de proteção a pessoas com deficiência intelectual.",
+          "2.4_limitacoes": "• A categoria Y10–Y34 (intenção indeterminada) pode mascarar casos de violência.\n• Subnotificação de violências e negligências é frequente nessa população.\n• A associação de Q90 como causa múltipla requer análise de causas múltiplas de morte.",
+          "2.5_fontes": "SIM – Sistema de Informação sobre Mortalidade (DATASUS/MS)",
+          "2.6_metodos_de_calculo": {
+            "formula": "(Nº de óbitos com SD por categoria de causa externa / Total de óbitos com SD) × 100",
+            "numerador": "Número de DOs com Q90–Q90.9 associado e causa básica na respectiva categoria externa (X85–Y09; Y10–Y34; Y40–Y84; W00–X59)",
+            "denominador": "Total de DOs com Q90–Q90.9",
+            "multiplicador": "100"
+          },
+          "2.7_categorias_sugeridas_para_analise": "• Categoria de causa externa (CID-10)\n• Faixa etária\n• Sexo\n• UF\n• Local de ocorrência",
+          "2.8_dados_estatisticos_e_comentarios": "GRANULARIDADE: UF, Regiões, Brasil\nPERIODICIDADE DE ATUALIZAÇÃO: Anual\nRESPONSABILIDADE GERENCIAL: CGIAE/DAENT/SVSA/MS",
+          "2.9_literatura_relacionada": ""
+        },
+        "3_ficha_do_indicador_para_o_cientista_de_dados": {
+          "3.1_metodo_de_processamento_de_dados": "",
+          "3.2_metodo_de_processamento_analitico": "",
+          "3.3_metodo_de_apresentacao_de_dados": "",
+          "3.4_metodo_de_analise_matematica_e_estatistica": "",
+          "3.5_metodo_de_descoberta_de_conhecimento_em_bancos_de_dados_kdd": "",
+          "3.6_base_de_dados": ""
+        },
+        "4_apendice": {
+          "4.1_ver_tambem": "",
+          "4.2_ligacoes_externas": ""
+        }
+      }
+    },
+    {
+      "id_indicador": "SD.SIM.7",
+      "titulo": "Óbitos com síndrome de Down e causa básica respiratória",
+      "slug": "sd_sim_7",
+      "estrutura": {
+        "1_introducao": {
+          "1.1_endereco_eletronico": "",
+          "1.2_objetivo": ""
+        },
+        "2_ficha_do_indicador": {
+          "2.1_conceituacao": "• Número de óbitos com CID-10 Q90–Q90.9 registrado como causa múltipla e causa básica pertencente ao grupo de doenças respiratórias agudas (J09–J22), em um local e ano de referência.",
+          "2.2_interpretacao": "• Infecções respiratórias agudas são uma das principais causas de óbito em pessoas com SD, especialmente crianças e adultos mais velhos.\n• A hipotonia, as alterações anatômicas das vias aéreas e a imunodeficiência parcial associadas à SD aumentam a suscetibilidade a infecções respiratórias graves.",
+          "2.3_usos": "• Monitorar a mortalidade por causas respiratórias em pessoas com SD.\n• Subsidiar estratégias de vacinação (influenza, pneumococo, COVID-19) e de manejo precoce de infecções respiratórias.",
+          "2.4_limitacoes": "• Requer análise de causas múltiplas, o que demanda acesso à base de dados completa do SIM.\n• Qualidade do preenchimento das causas múltiplas pode variar.",
+          "2.5_fontes": "SIM – Sistema de Informação sobre Mortalidade (DATASUS/MS)",
+          "2.6_metodos_de_calculo": {
+            "formula": "(Nº de DOs com Q90 como causa múltipla E causa básica J09–J22 / Total de DOs com Q90) × 100",
+            "numerador": "DOs com Q90–Q90.9 como causa associada e causa básica nos capítulos J09–J22",
+            "denominador": "Total de DOs com Q90–Q90.9",
+            "multiplicador": "100"
+          },
+          "2.7_categorias_sugeridas_para_analise": "• Causa básica respiratória (subcategoria CID J09–J22)\n• Faixa etária\n• Sexo\n• UF",
+          "2.8_dados_estatisticos_e_comentarios": "GRANULARIDADE: UF, Regiões, Brasil\nPERIODICIDADE DE ATUALIZAÇÃO: Anual\nRESPONSABILIDADE GERENCIAL: CGIAE/DAENT/SVSA/MS",
+          "2.9_literatura_relacionada": ""
+        },
+        "3_ficha_do_indicador_para_o_cientista_de_dados": {
+          "3.1_metodo_de_processamento_de_dados": "",
+          "3.2_metodo_de_processamento_analitico": "",
+          "3.3_metodo_de_apresentacao_de_dados": "",
+          "3.4_metodo_de_analise_matematica_e_estatistica": "",
+          "3.5_metodo_de_descoberta_de_conhecimento_em_bancos_de_dados_kdd": "",
+          "3.6_base_de_dados": ""
+        },
+        "4_apendice": {
+          "4.1_ver_tambem": "",
+          "4.2_ligacoes_externas": ""
+        }
+      }
+    },
+    {
+      "id_indicador": "SD.SIH.1",
+      "titulo": "Número de internações hospitalares com diagnóstico primário ou secundário de síndrome de Down",
+      "slug": "sd_sih_1",
+      "estrutura": {
+        "1_introducao": {
+          "1.1_endereco_eletronico": "",
+          "1.2_objetivo": ""
+        },
+        "2_ficha_do_indicador": {
+          "2.1_conceituacao": "• Número de internações hospitalares no âmbito do SUS com diagnóstico principal ou secundário de síndrome de Down (CID-10 Q90–Q90.9), em um local e ano de referência.",
+          "2.2_interpretacao": "• Quantifica a utilização de leitos hospitalares do SUS por pessoas com SD.\n• Elevado número de internações pode indicar comorbidades mal controladas na atenção ambulatorial ou barreiras de acesso à atenção primária.",
+          "2.3_usos": "• Monitorar a demanda hospitalar associada à SD.\n• Subsidiar o dimensionamento de leitos e equipes especializadas.",
+          "2.4_limitacoes": "• O SIH/SUS cobre apenas internações financiadas pelo SUS, excluindo setor privado suplementar.\n• Uma mesma pessoa pode ter múltiplas internações no período, gerando duplicidade de registros.\n• A qualidade do preenchimento do diagnóstico secundário é variável.",
+          "2.5_fontes": "SIH/SUS – Sistema de Informações Hospitalares do SUS (DATASUS/MS)",
+          "2.6_metodos_de_calculo": {
+            "formula": "Somatório de AIHs (Autorizações de Internação Hospitalar) com Q90–Q90.9 como diagnóstico principal ou secundário",
+            "numerador": "Número de AIHs com Q90–Q90.9 no campo de diagnóstico principal ou secundário",
+            "denominador": "Não se aplica (número absoluto); pode ser expresso por 100.000 habitantes com SD estimados",
+            "multiplicador": "Não se aplica / 100.000"
+          },
+          "2.7_categorias_sugeridas_para_analise": "• Diagnóstico principal vs. secundário\n• Faixa etária\n• Sexo\n• UF\n• Tipo de estabelecimento",
+          "2.8_dados_estatisticos_e_comentarios": "GRANULARIDADE: Município, UF, Regiões, Brasil\nPERIODICIDADE DE ATUALIZAÇÃO: Anual\nRESPONSABILIDADE GERENCIAL: Coordenação-Geral de Sistemas de Informação (CGSI/DATASUS/SEIDIGI/MS)",
+          "2.9_literatura_relacionada": ""
+        },
+        "3_ficha_do_indicador_para_o_cientista_de_dados": {
+          "3.1_metodo_de_processamento_de_dados": "",
+          "3.2_metodo_de_processamento_analitico": "",
+          "3.3_metodo_de_apresentacao_de_dados": "",
+          "3.4_metodo_de_analise_matematica_e_estatistica": "",
+          "3.5_metodo_de_descoberta_de_conhecimento_em_bancos_de_dados_kdd": "",
+          "3.6_base_de_dados": ""
+        },
+        "4_apendice": {
+          "4.1_ver_tambem": "",
+          "4.2_ligacoes_externas": ""
+        }
+      }
+    },
+    {
+      "id_indicador": "SD.SIH.2",
+      "titulo": "Média de permanência hospitalar de pacientes com síndrome de Down",
+      "slug": "sd_sih_2",
+      "estrutura": {
+        "1_introducao": {
+          "1.1_endereco_eletronico": "",
+          "1.2_objetivo": ""
+        },
+        "2_ficha_do_indicador": {
+          "2.1_conceituacao": "• Tempo médio de internação (em dias) de pacientes com síndrome de Down (CID-10 Q90–Q90.9 como diagnóstico principal ou secundário), internados em estabelecimentos de saúde do SUS, em um local e ano de referência.",
+          "2.2_interpretacao": "• Internações mais longas podem refletir maior complexidade clínica, comorbidades múltiplas ou dificuldades de alta segura.\n• Comparações com a média geral permitem avaliar a maior demanda de recursos hospitalares por essa população.",
+          "2.3_usos": "• Dimensionar a necessidade de leitos para a população com SD.\n• Monitorar a eficiência da atenção hospitalar a pessoas com SD.",
+          "2.4_limitacoes": "• Outliers (internações muito longas) podem distorcer a média; recomenda-se calcular também a mediana.\n• Diferenças na complexidade das internações podem influenciar as comparações.",
+          "2.5_fontes": "SIH/SUS – Sistema de Informações Hospitalares do SUS (DATASUS/MS)",
+          "2.6_metodos_de_calculo": {
+            "formula": "Total de dias de internação de pacientes com SD / Número de internações de pacientes com SD",
+            "numerador": "Soma dos dias de permanência das AIHs com Q90–Q90.9",
+            "denominador": "Número total de AIHs com Q90–Q90.9",
+            "multiplicador": "Não se aplica (resultado em dias)"
+          },
+          "2.7_categorias_sugeridas_para_analise": "• Diagnóstico principal\n• Faixa etária\n• Sexo\n• UF\n• Tipo de estabelecimento",
+          "2.8_dados_estatisticos_e_comentarios": "GRANULARIDADE: UF, Regiões, Brasil\nPERIODICIDADE DE ATUALIZAÇÃO: Anual\nRESPONSABILIDADE GERENCIAL: CGSI/DATASUS/SEIDIGI/MS",
+          "2.9_literatura_relacionada": ""
+        },
+        "3_ficha_do_indicador_para_o_cientista_de_dados": {
+          "3.1_metodo_de_processamento_de_dados": "",
+          "3.2_metodo_de_processamento_analitico": "",
+          "3.3_metodo_de_apresentacao_de_dados": "",
+          "3.4_metodo_de_analise_matematica_e_estatistica": "",
+          "3.5_metodo_de_descoberta_de_conhecimento_em_bancos_de_dados_kdd": "",
+          "3.6_base_de_dados": ""
+        },
+        "4_apendice": {
+          "4.1_ver_tambem": "",
+          "4.2_ligacoes_externas": ""
+        }
+      }
+    },
+    {
+      "id_indicador": "SD.SIH.3",
+      "titulo": "Custo médio das internações SUS por paciente com síndrome de Down",
+      "slug": "sd_sih_3",
+      "estrutura": {
+        "1_introducao": {
+          "1.1_endereco_eletronico": "",
+          "1.2_objetivo": ""
+        },
+        "2_ficha_do_indicador": {
+          "2.1_conceituacao": "• Valor médio pago pelo SUS por internação de paciente com síndrome de Down (CID-10 Q90–Q90.9 como diagnóstico principal ou secundário), em um local e ano de referência.",
+          "2.2_interpretacao": "• Reflete a carga econômica das internações associadas à SD para o sistema público de saúde.\n• Internações com comorbidades graves (cardiopatias, pneumonias, epilepsia) tendem a apresentar maiores custos.",
+          "2.3_usos": "• Dimensionar o impacto financeiro da SD no sistema hospitalar do SUS.\n• Subsidiar análises de custo-efetividade de intervenções preventivas.",
+          "2.4_limitacoes": "• Os valores pagos pelo SUS (tabela SIH) não refletem os custos reais das internações.\n• Variações de preenchimento entre estados podem comprometer comparações.",
+          "2.5_fontes": "SIH/SUS – Sistema de Informações Hospitalares do SUS (DATASUS/MS)",
+          "2.6_metodos_de_calculo": {
+            "formula": "Valor total pago pelo SUS nas AIHs com SD / Número de AIHs com SD",
+            "numerador": "Soma do valor aprovado nas AIHs com Q90–Q90.9",
+            "denominador": "Número de AIHs com Q90–Q90.9",
+            "multiplicador": "Não se aplica (resultado em R$)"
+          },
+          "2.7_categorias_sugeridas_para_analise": "• Diagnóstico principal (grupo de causa)\n• Faixa etária\n• UF\n• Tipo de estabelecimento",
+          "2.8_dados_estatisticos_e_comentarios": "GRANULARIDADE: UF, Regiões, Brasil\nPERIODICIDADE DE ATUALIZAÇÃO: Anual\nRESPONSABILIDADE GERENCIAL: CGSI/DATASUS/SEIDIGI/MS",
+          "2.9_literatura_relacionada": ""
+        },
+        "3_ficha_do_indicador_para_o_cientista_de_dados": {
+          "3.1_metodo_de_processamento_de_dados": "",
+          "3.2_metodo_de_processamento_analitico": "",
+          "3.3_metodo_de_apresentacao_de_dados": "",
+          "3.4_metodo_de_analise_matematica_e_estatistica": "",
+          "3.5_metodo_de_descoberta_de_conhecimento_em_bancos_de_dados_kdd": "",
+          "3.6_base_de_dados": ""
+        },
+        "4_apendice": {
+          "4.1_ver_tambem": "",
+          "4.2_ligacoes_externas": ""
+        }
+      }
+    },
+    {
+      "id_indicador": "SD.SIH.4",
+      "titulo": "Internações por causas associadas em pessoas com síndrome de Down (cardiopatias, pneumonia, epilepsia)",
+      "slug": "sd_sih_4",
+      "estrutura": {
+        "1_introducao": {
+          "1.1_endereco_eletronico": "",
+          "1.2_objetivo": ""
+        },
+        "2_ficha_do_indicador": {
+          "2.1_conceituacao": "• Número e proporção de internações hospitalares no SUS de pessoas com síndrome de Down (Q90–Q90.9) segundo as principais causas associadas: cardiopatias congênitas (Q20–Q28), pneumonia (J12–J18), infecções respiratórias (J09–J22) e epilepsia (G40–G41).",
+          "2.2_interpretacao": "• Cardiopatias congênitas e infecções respiratórias são as principais causas de internação em crianças com SD.\n• Na vida adulta, epilepsia e demência (associada à SD) ganham relevância como causa de internação.",
+          "2.3_usos": "• Identificar as causas mais frequentes de internação por SD para direcionar ações de prevenção e manejo.\n• Subsidiar protocolos assistenciais específicos para a população com SD.",
+          "2.4_limitacoes": "• O SIH registra apenas internações SUS; casos do setor privado não estão incluídos.\n• Uma mesma pessoa pode ter várias internações por causas diferentes no mesmo ano.",
+          "2.5_fontes": "SIH/SUS – Sistema de Informações Hospitalares do SUS (DATASUS/MS)",
+          "2.6_metodos_de_calculo": {
+            "formula": "(Nº de AIHs com SD e diagnóstico principal na categoria de interesse / Total de AIHs com SD) × 100",
+            "numerador": "Número de AIHs com Q90–Q90.9 e diagnóstico principal em cada categoria (Q20–Q28, J12–J18, G40–G41, etc.)",
+            "denominador": "Total de AIHs com Q90–Q90.9",
+            "multiplicador": "100"
+          },
+          "2.7_categorias_sugeridas_para_analise": "• Diagnóstico principal (por grupo CID-10)\n• Faixa etária\n• Sexo\n• UF",
+          "2.8_dados_estatisticos_e_comentarios": "GRANULARIDADE: UF, Regiões, Brasil\nPERIODICIDADE DE ATUALIZAÇÃO: Anual\nRESPONSABILIDADE GERENCIAL: CGSI/DATASUS/SEIDIGI/MS",
+          "2.9_literatura_relacionada": ""
+        },
+        "3_ficha_do_indicador_para_o_cientista_de_dados": {
+          "3.1_metodo_de_processamento_de_dados": "",
+          "3.2_metodo_de_processamento_analitico": "",
+          "3.3_metodo_de_apresentacao_de_dados": "",
+          "3.4_metodo_de_analise_matematica_e_estatistica": "",
+          "3.5_metodo_de_descoberta_de_conhecimento_em_bancos_de_dados_kdd": "",
+          "3.6_base_de_dados": ""
+        },
+        "4_apendice": {
+          "4.1_ver_tambem": "",
+          "4.2_ligacoes_externas": ""
+        }
+      }
+    },
+    {
+      "id_indicador": "SD.SIH.5",
+      "titulo": "Internações em UTI de pacientes com síndrome de Down",
+      "slug": "sd_sih_5",
+      "estrutura": {
+        "1_introducao": {
+          "1.1_endereco_eletronico": "",
+          "1.2_objetivo": ""
+        },
+        "2_ficha_do_indicador": {
+          "2.1_conceituacao": "• Número e proporção de internações hospitalares de pessoas com síndrome de Down (Q90–Q90.9) que incluíram passagem por Unidade de Terapia Intensiva (UTI), em um local e ano de referência.",
+          "2.2_interpretacao": "• A utilização de UTI indica quadros de maior gravidade clínica.\n• A proporção de internações com UTI entre pessoas com SD reflete a gravidade das comorbidades associadas.",
+          "2.3_usos": "• Avaliar a gravidade das internações entre pessoas com SD.\n• Subsidiar o dimensionamento de leitos de UTI para essa população.",
+          "2.4_limitacoes": "• O registro de utilização de UTI nas AIHs pode estar sujeito a subnotificação.\n• Diferenças na disponibilidade de UTI entre regiões influenciam as comparações.",
+          "2.5_fontes": "SIH/SUS – Sistema de Informações Hospitalares do SUS (DATASUS/MS)",
+          "2.6_metodos_de_calculo": {
+            "formula": "(Nº de AIHs com SD e utilização de UTI / Total de AIHs com SD) × 100",
+            "numerador": "Número de AIHs com Q90–Q90.9 com registro de dias em UTI &gt; 0",
+            "denominador": "Total de AIHs com Q90–Q90.9",
+            "multiplicador": "100"
+          },
+          "2.7_categorias_sugeridas_para_analise": "• Faixa etária\n• Diagnóstico principal\n• Sexo\n• UF",
+          "2.8_dados_estatisticos_e_comentarios": "GRANULARIDADE: UF, Regiões, Brasil\nPERIODICIDADE DE ATUALIZAÇÃO: Anual\nRESPONSABILIDADE GERENCIAL: CGSI/DATASUS/SEIDIGI/MS",
+          "2.9_literatura_relacionada": ""
+        },
+        "3_ficha_do_indicador_para_o_cientista_de_dados": {
+          "3.1_metodo_de_processamento_de_dados": "",
+          "3.2_metodo_de_processamento_analitico": "",
+          "3.3_metodo_de_apresentacao_de_dados": "",
+          "3.4_metodo_de_analise_matematica_e_estatistica": "",
+          "3.5_metodo_de_descoberta_de_conhecimento_em_bancos_de_dados_kdd": "",
+          "3.6_base_de_dados": ""
+        },
+        "4_apendice": {
+          "4.1_ver_tambem": "",
+          "4.2_ligacoes_externas": ""
+        }
+      }
+    },
+    {
+      "id_indicador": "SD.SIH.6",
+      "titulo": "Procedimentos cirúrgicos relacionados à síndrome de Down (ex: correção de cardiopatia congênita)",
+      "slug": "sd_sih_6",
+      "estrutura": {
+        "1_introducao": {
+          "1.1_endereco_eletronico": "",
+          "1.2_objetivo": ""
+        },
+        "2_ficha_do_indicador": {
+          "2.1_conceituacao": "• Número e proporção de internações de pessoas com síndrome de Down (Q90–Q90.9) que incluíram procedimentos cirúrgicos associados às comorbidades da SD, em especial cirurgia cardíaca para correção de cardiopatias congênitas, em um local e ano de referência.",
+          "2.2_interpretacao": "• Cerca de 40–50% das crianças com SD nascem com cardiopatia congênita, muitas das quais necessitam de correção cirúrgica.\n• O acesso à cirurgia cardíaca é determinante para a sobrevida no primeiro ano de vida.\n• A proporção de crianças operadas reflete o grau de acesso ao cuidado especializado.",
+          "2.3_usos": "• Monitorar o acesso à cirurgia cardíaca e a outros procedimentos cirúrgicos para pessoas com SD.\n• Identificar desigualdades regionais no acesso a procedimentos de alta complexidade.",
+          "2.4_limitacoes": "• O SIGTAP agrupa procedimentos de forma ampla; pode ser necessário cruzamento com outras variáveis para especificidade.\n• Cobertura restrita ao SUS.",
+          "2.5_fontes": "SIH/SUS – Sistema de Informações Hospitalares do SUS (DATASUS/MS)",
+          "2.6_metodos_de_calculo": {
+            "formula": "(Nº de AIHs com SD e procedimento cirúrgico de interesse / Total de AIHs com SD) × 100",
+            "numerador": "Número de AIHs com Q90–Q90.9 e código de procedimento cirúrgico (ex: SIGTAP grupos de cirurgia cardíaca)",
+            "denominador": "Total de AIHs com Q90–Q90.9",
+            "multiplicador": "100"
+          },
+          "2.7_categorias_sugeridas_para_analise": "• Tipo de procedimento cirúrgico\n• Faixa etária\n• UF\n• Tipo de estabelecimento",
+          "2.8_dados_estatisticos_e_comentarios": "GRANULARIDADE: UF, Regiões, Brasil\nPERIODICIDADE DE ATUALIZAÇÃO: Anual\nRESPONSABILIDADE GERENCIAL: CGSI/DATASUS/SEIDIGI/MS",
+          "2.9_literatura_relacionada": ""
+        },
+        "3_ficha_do_indicador_para_o_cientista_de_dados": {
+          "3.1_metodo_de_processamento_de_dados": "",
+          "3.2_metodo_de_processamento_analitico": "",
+          "3.3_metodo_de_apresentacao_de_dados": "",
+          "3.4_metodo_de_analise_matematica_e_estatistica": "",
+          "3.5_metodo_de_descoberta_de_conhecimento_em_bancos_de_dados_kdd": "",
+          "3.6_base_de_dados": ""
+        },
+        "4_apendice": {
+          "4.1_ver_tambem": "",
+          "4.2_ligacoes_externas": ""
+        }
+      }
+    },
+    {
+      "id_indicador": "SD.SIH.7",
+      "titulo": "Estabelecimentos com atendimentos de pessoas com síndrome de Down por habitante",
+      "slug": "sd_sih_7",
+      "estrutura": {
+        "1_introducao": {
+          "1.1_endereco_eletronico": "",
+          "1.2_objetivo": ""
+        },
+        "2_ficha_do_indicador": {
+          "2.1_conceituacao": "• Número de estabelecimentos de saúde do SUS que realizaram ao menos uma internação com diagnóstico de síndrome de Down (Q90–Q90.9) por 100.000 habitantes, em um local e ano de referência.",
+          "2.2_interpretacao": "• Permite avaliar a capilaridade da rede hospitalar SUS no atendimento a pessoas com SD.\n• Baixa densidade de estabelecimentos pode indicar concentração do atendimento e barreiras de acesso geográfico.",
+          "2.3_usos": "• Mapear a distribuição geográfica dos estabelecimentos que atendem pessoas com SD.\n• Subsidiar políticas de descentralização da atenção especializada.",
+          "2.4_limitacoes": "• Estabelecimentos com poucos casos podem ter registros ocasionais, distorcendo a análise.\n• A localização do estabelecimento pode não coincidir com a residência do paciente.",
+          "2.5_fontes": "SIH/SUS – Sistema de Informações Hospitalares do SUS (DATASUS/MS)",
+          "2.6_metodos_de_calculo": {
+            "formula": "(Nº de estabelecimentos com ≥1 AIH com Q90–Q90.9 / População total do território) × 100.000",
+            "numerador": "Número distinto de estabelecimentos com ao menos uma AIH com Q90–Q90.9",
+            "denominador": "População total residente na área de referência",
+            "multiplicador": "100.000"
+          },
+          "2.7_categorias_sugeridas_para_analise": "• UF\n• Município\n• Tipo de estabelecimento",
+          "2.8_dados_estatisticos_e_comentarios": "GRANULARIDADE: Município, UF, Regiões, Brasil\nPERIODICIDADE DE ATUALIZAÇÃO: Anual\nRESPONSABILIDADE GERENCIAL: CGSI/DATASUS/SEIDIGI/MS",
+          "2.9_literatura_relacionada": ""
+        },
+        "3_ficha_do_indicador_para_o_cientista_de_dados": {
+          "3.1_metodo_de_processamento_de_dados": "",
+          "3.2_metodo_de_processamento_analitico": "",
+          "3.3_metodo_de_apresentacao_de_dados": "",
+          "3.4_metodo_de_analise_matematica_e_estatistica": "",
+          "3.5_metodo_de_descoberta_de_conhecimento_em_bancos_de_dados_kdd": "",
+          "3.6_base_de_dados": ""
+        },
+        "4_apendice": {
+          "4.1_ver_tambem": "",
+          "4.2_ligacoes_externas": ""
+        }
+      }
+    },
+    {
+      "id_indicador": "SD.SIA.1",
+      "titulo": "Número de atendimentos ambulatoriais por síndrome de Down",
+      "slug": "sd_sia_1",
+      "estrutura": {
+        "1_introducao": {
+          "1.1_endereco_eletronico": "",
+          "1.2_objetivo": ""
+        },
+        "2_ficha_do_indicador": {
+          "2.1_conceituacao": "• Número de atendimentos ambulatoriais no SUS com CID-10 Q90–Q90.9 registrado como diagnóstico principal, em um local e ano de referência.",
+          "2.2_interpretacao": "• Quantifica a utilização de serviços ambulatoriais especializados por pessoas com SD no SUS.\n• Permite avaliar tendências de demanda e dimensionar a oferta de serviços ambulatoriais.",
+          "2.3_usos": "• Monitorar a utilização de serviços ambulatoriais por pessoas com SD.\n• Subsidiar o planejamento de consultas e procedimentos especializados.",
+          "2.4_limitacoes": "• O SIA cobre apenas atendimentos do SUS; o setor privado não está incluído.\n• A qualidade do registro do diagnóstico nos formulários ambulatoriais (BPA) pode ser variável.\n• Um mesmo paciente pode gerar múltiplos registros no período.",
+          "2.5_fontes": "SIA/SUS – Sistema de Informações Ambulatoriais do SUS (DATASUS/MS)",
+          "2.6_metodos_de_calculo": {
+            "formula": "Somatório de registros de produção ambulatorial (BPA/APAC) com diagnóstico Q90–Q90.9",
+            "numerador": "Número de registros de produção ambulatorial com Q90–Q90.9",
+            "denominador": "Não se aplica (número absoluto)",
+            "multiplicador": "Não se aplica"
+          },
+          "2.7_categorias_sugeridas_para_analise": "• Tipo de atendimento\n• Especialidade\n• Faixa etária\n• UF",
+          "2.8_dados_estatisticos_e_comentarios": "GRANULARIDADE: Município, UF, Regiões, Brasil\nPERIODICIDADE DE ATUALIZAÇÃO: Mensal / Anual\nRESPONSABILIDADE GERENCIAL: CGSI/DATASUS/SEIDIGI/MS",
+          "2.9_literatura_relacionada": ""
+        },
+        "3_ficha_do_indicador_para_o_cientista_de_dados": {
+          "3.1_metodo_de_processamento_de_dados": "",
+          "3.2_metodo_de_processamento_analitico": "",
+          "3.3_metodo_de_apresentacao_de_dados": "",
+          "3.4_metodo_de_analise_matematica_e_estatistica": "",
+          "3.5_metodo_de_descoberta_de_conhecimento_em_bancos_de_dados_kdd": "",
+          "3.6_base_de_dados": ""
+        },
+        "4_apendice": {
+          "4.1_ver_tambem": "",
+          "4.2_ligacoes_externas": ""
+        }
+      }
+    },
+    {
+      "id_indicador": "SD.SIA.2",
+      "titulo": "Consultas com especialidades para pessoas com síndrome de Down (genética, pediatria, neurologia, cardiologia)",
+      "slug": "sd_sia_2",
+      "estrutura": {
+        "1_introducao": {
+          "1.1_endereco_eletronico": "",
+          "1.2_objetivo": ""
+        },
+        "2_ficha_do_indicador": {
+          "2.1_conceituacao": "• Número e proporção de atendimentos ambulatoriais de pessoas com síndrome de Down (Q90–Q90.9) realizados nas especialidades de genética médica, pediatria, neurologia e cardiologia, em um local e ano de referência.",
+          "2.2_interpretacao": "• O acompanhamento multidisciplinar é fundamental para o manejo das comorbidades associadas à SD.\n• A distribuição por especialidade reflete o perfil de necessidades clínicas da população com SD atendida no SUS.",
+          "2.3_usos": "• Monitorar o acesso das pessoas com SD às especialidades médicas essenciais.\n• Identificar lacunas na oferta de consultas especializadas por UF.",
+          "2.4_limitacoes": "• O registro de especialidade no SIA pode estar incompleto em alguns serviços.\n• Oferta insuficiente de geneticistas no SUS pode subestimar a demanda real.",
+          "2.5_fontes": "SIA/SUS – Sistema de Informações Ambulatoriais do SUS (DATASUS/MS)",
+          "2.6_metodos_de_calculo": {
+            "formula": "(Nº de atendimentos com SD em cada especialidade / Total de atendimentos com SD) × 100",
+            "numerador": "Registros de produção ambulatorial com Q90–Q90.9 e especialidade de interesse",
+            "denominador": "Total de registros ambulatoriais com Q90–Q90.9",
+            "multiplicador": "100"
+          },
+          "2.7_categorias_sugeridas_para_analise": "• Especialidade médica\n• Faixa etária\n• UF\n• Tipo de estabelecimento",
+          "2.8_dados_estatisticos_e_comentarios": "GRANULARIDADE: UF, Regiões, Brasil\nPERIODICIDADE DE ATUALIZAÇÃO: Anual\nRESPONSABILIDADE GERENCIAL: CGSI/DATASUS/SEIDIGI/MS",
+          "2.9_literatura_relacionada": ""
+        },
+        "3_ficha_do_indicador_para_o_cientista_de_dados": {
+          "3.1_metodo_de_processamento_de_dados": "",
+          "3.2_metodo_de_processamento_analitico": "",
+          "3.3_metodo_de_apresentacao_de_dados": "",
+          "3.4_metodo_de_analise_matematica_e_estatistica": "",
+          "3.5_metodo_de_descoberta_de_conhecimento_em_bancos_de_dados_kdd": "",
+          "3.6_base_de_dados": ""
+        },
+        "4_apendice": {
+          "4.1_ver_tambem": "",
+          "4.2_ligacoes_externas": ""
+        }
+      }
+    },
+    {
+      "id_indicador": "SD.SIA.3",
+      "titulo": "Procedimentos de reabilitação para pessoas com síndrome de Down (fisioterapia, fonoaudiologia, terapia ocupacional, psicologia)",
+      "slug": "sd_sia_3",
+      "estrutura": {
+        "1_introducao": {
+          "1.1_endereco_eletronico": "",
+          "1.2_objetivo": ""
+        },
+        "2_ficha_do_indicador": {
+          "2.1_conceituacao": "• Número de procedimentos de reabilitação realizados no SUS para pessoas com síndrome de Down (Q90–Q90.9), incluindo fisioterapia, fonoaudiologia, terapia ocupacional e psicologia, em um local e ano de referência.",
+          "2.2_interpretacao": "• A reabilitação precoce e continuada é essencial para o desenvolvimento neuropsicomotor e a qualidade de vida de pessoas com SD.\n• O acesso a esses procedimentos no SUS é determinante para a inclusão social e o desenvolvimento funcional.",
+          "2.3_usos": "• Monitorar a oferta e a utilização de serviços de reabilitação para pessoas com SD no SUS.\n• Identificar desigualdades regionais no acesso à reabilitação.",
+          "2.4_limitacoes": "• Subregistro de diagnóstico nos procedimentos de reabilitação é frequente.\n• Nem todos os procedimentos exigem CID principal no registro, limitando a captura por diagnóstico.",
+          "2.5_fontes": "SIA/SUS – Sistema de Informações Ambulatoriais do SUS (DATASUS/MS)",
+          "2.6_metodos_de_calculo": {
+            "formula": "Somatório de procedimentos de reabilitação (SIGTAP específicos) com diagnóstico Q90–Q90.9",
+            "numerador": "Número de registros de procedimentos de reabilitação com diagnóstico Q90–Q90.9",
+            "denominador": "Não se aplica; pode ser expresso por 100 pessoas com SD estimadas",
+            "multiplicador": "Não se aplica"
+          },
+          "2.7_categorias_sugeridas_para_analise": "• Tipo de procedimento (fisioterapia, fonoaudiologia, TO, psicologia)\n• Faixa etária\n• UF",
+          "2.8_dados_estatisticos_e_comentarios": "GRANULARIDADE: UF, Regiões, Brasil\nPERIODICIDADE DE ATUALIZAÇÃO: Anual\nRESPONSABILIDADE GERENCIAL: CGSI/DATASUS/SEIDIGI/MS",
+          "2.9_literatura_relacionada": ""
+        },
+        "3_ficha_do_indicador_para_o_cientista_de_dados": {
+          "3.1_metodo_de_processamento_de_dados": "",
+          "3.2_metodo_de_processamento_analitico": "",
+          "3.3_metodo_de_apresentacao_de_dados": "",
+          "3.4_metodo_de_analise_matematica_e_estatistica": "",
+          "3.5_metodo_de_descoberta_de_conhecimento_em_bancos_de_dados_kdd": "",
+          "3.6_base_de_dados": ""
+        },
+        "4_apendice": {
+          "4.1_ver_tambem": "",
+          "4.2_ligacoes_externas": ""
+        }
+      }
+    },
+    {
+      "id_indicador": "SD.SIA.4",
+      "titulo": "Encaminhamentos a CER (Centros Especializados em Reabilitação) para pessoas com síndrome de Down",
+      "slug": "sd_sia_4",
+      "estrutura": {
+        "1_introducao": {
+          "1.1_endereco_eletronico": "",
+          "1.2_objetivo": ""
+        },
+        "2_ficha_do_indicador": {
+          "2.1_conceituacao": "• Número de atendimentos de pessoas com síndrome de Down (Q90–Q90.9) realizados em Centros Especializados em Reabilitação (CER), em um local e ano de referência. O CER é um serviço ambulatorial especializado do SUS que realiza diagnóstico, tratamento e concessão de órteses, próteses e meios auxiliares de locomoção (OPM), além de ações de reabilitação.",
+          "2.2_interpretacao": "• O CER é um dos principais pontos de atenção especializada para pessoas com deficiência intelectual no SUS.\n• O número de atendimentos nos CER indica o alcance da rede de reabilitação especializada para a população com SD.",
+          "2.3_usos": "• Monitorar o acesso de pessoas com SD aos serviços de reabilitação especializada.\n• Avaliar a distribuição geográfica dos CER e a cobertura para pessoas com SD.",
+          "2.4_limitacoes": "• Nem todos os CER registram diagnóstico associado de forma sistemática.\n• Oferta insuficiente de CER em alguns estados pode limitar o acesso.",
+          "2.5_fontes": "SIA/SUS – Sistema de Informações Ambulatoriais do SUS (DATASUS/MS)",
+          "2.6_metodos_de_calculo": {
+            "formula": "Somatório de atendimentos em CER com diagnóstico Q90–Q90.9",
+            "numerador": "Número de registros ambulatoriais em estabelecimentos classificados como CER com Q90–Q90.9",
+            "denominador": "Não se aplica",
+            "multiplicador": "Não se aplica"
+          },
+          "2.7_categorias_sugeridas_para_analise": "• Modalidade do CER (tipo I, II, III, IV)\n• Tipo de serviço\n• Faixa etária\n• UF",
+          "2.8_dados_estatisticos_e_comentarios": "GRANULARIDADE: Município, UF, Regiões, Brasil\nPERIODICIDADE DE ATUALIZAÇÃO: Anual\nRESPONSABILIDADE GERENCIAL: CGSI/DATASUS/SEIDIGI/MS",
+          "2.9_literatura_relacionada": ""
+        },
+        "3_ficha_do_indicador_para_o_cientista_de_dados": {
+          "3.1_metodo_de_processamento_de_dados": "",
+          "3.2_metodo_de_processamento_analitico": "",
+          "3.3_metodo_de_apresentacao_de_dados": "",
+          "3.4_metodo_de_analise_matematica_e_estatistica": "",
+          "3.5_metodo_de_descoberta_de_conhecimento_em_bancos_de_dados_kdd": "",
+          "3.6_base_de_dados": ""
+        },
+        "4_apendice": {
+          "4.1_ver_tambem": "",
+          "4.2_ligacoes_externas": ""
+        }
+      }
+    },
+    {
+      "id_indicador": "SD.SIA.5",
+      "titulo": "APACs para procedimentos de média e alta complexidade em pessoas com síndrome de Down",
+      "slug": "sd_sia_5",
+      "estrutura": {
+        "1_introducao": {
+          "1.1_endereco_eletronico": "",
+          "1.2_objetivo": ""
+        },
+        "2_ficha_do_indicador": {
+          "2.1_conceituacao": "• Número de Autorizações de Procedimentos de Alta Complexidade (APAC) emitidas para pessoas com síndrome de Down (Q90–Q90.9), relacionadas a procedimentos como estimulação precoce, audiometria e ecocardiograma, em um local e ano de referência.",
+          "2.2_interpretacao": "• A APAC é o instrumento administrativo que autoriza e registra procedimentos de média e alta complexidade no SUS.\n• A emissão de APACs para procedimentos específicos de SD indica o acesso a diagnósticos e tratamentos essenciais.",
+          "2.3_usos": "• Monitorar o acesso de pessoas com SD a procedimentos de média e alta complexidade no SUS.\n• Identificar barreiras administrativas ou regionais no acesso a esses procedimentos.",
+          "2.4_limitacoes": "• Nem todos os procedimentos relevantes para SD são autorizados via APAC; alguns utilizam BPA.\n• Variações nos critérios de autorização entre estados podem comprometer comparações.",
+          "2.5_fontes": "SIA/SUS – Sistema de Informações Ambulatoriais do SUS (DATASUS/MS)",
+          "2.6_metodos_de_calculo": {
+            "formula": "Somatório de APACs com diagnóstico Q90–Q90.9 por tipo de procedimento",
+            "numerador": "Número de APACs com Q90–Q90.9 e procedimento de interesse (estimulação precoce, audiometria, ecocardiograma, etc.)",
+            "denominador": "Não se aplica",
+            "multiplicador": "Não se aplica"
+          },
+          "2.7_categorias_sugeridas_para_analise": "• Tipo de procedimento (código SIGTAP)\n• Faixa etária\n• UF",
+          "2.8_dados_estatisticos_e_comentarios": "GRANULARIDADE: UF, Regiões, Brasil\nPERIODICIDADE DE ATUALIZAÇÃO: Mensal / Anual\nRESPONSABILIDADE GERENCIAL: CGSI/DATASUS/SEIDIGI/MS",
+          "2.9_literatura_relacionada": ""
+        },
+        "3_ficha_do_indicador_para_o_cientista_de_dados": {
+          "3.1_metodo_de_processamento_de_dados": "",
+          "3.2_metodo_de_processamento_analitico": "",
+          "3.3_metodo_de_apresentacao_de_dados": "",
+          "3.4_metodo_de_analise_matematica_e_estatistica": "",
+          "3.5_metodo_de_descoberta_de_conhecimento_em_bancos_de_dados_kdd": "",
+          "3.6_base_de_dados": ""
+        },
+        "4_apendice": {
+          "4.1_ver_tambem": "",
+          "4.2_ligacoes_externas": ""
+        }
+      }
+    },
+    {
+      "id_indicador": "SD.CNES.1",
+      "titulo": "Número de estabelecimentos habilitados como CER com serviços relevantes para síndrome de Down",
+      "slug": "sd_cnes_1",
+      "estrutura": {
+        "1_introducao": {
+          "1.1_endereco_eletronico": "",
+          "1.2_objetivo": ""
+        },
+        "2_ficha_do_indicador": {
+          "2.1_conceituacao": "• Número de estabelecimentos de saúde cadastrados no CNES com habilitação como Centro Especializado em Reabilitação (CER), em especial o tipo IV (que inclui reabilitação intelectual), por Unidade da Federação, em um período de referência.",
+          "2.2_interpretacao": "• A existência de CER habilitados, especialmente o tipo IV, é fundamental para a oferta de reabilitação às pessoas com síndrome de Down.\n• A distribuição dos CER por UF e município permite identificar vazios assistenciais na rede de reabilitação especializada.",
+          "2.3_usos": "• Mapear a oferta de serviços especializados de reabilitação para pessoas com SD no território nacional.\n• Subsidiar decisões de implantação de novos CER em regiões com déficit de cobertura.",
+          "2.4_limitacoes": "• O CNES reflete a situação cadastral, que pode não corresponder à capacidade operacional real do estabelecimento.\n• Atualizações do cadastro podem apresentar defasagem.",
+          "2.5_fontes": "CNES – Cadastro Nacional de Estabelecimentos de Saúde (DATASUS/MS)",
+          "2.6_metodos_de_calculo": {
+            "formula": "Contagem de CNPJ/CNES de estabelecimentos com habilitação CER ativa, por tipo e UF",
+            "numerador": "Número de estabelecimentos ativos com habilitação CER (por tipo: I, II, III, IV) no CNES",
+            "denominador": "Não se aplica",
+            "multiplicador": "Não se aplica; pode ser calculado por 100.000 habitantes"
+          },
+          "2.7_categorias_sugeridas_para_analise": "• Tipo de CER (I, II, III, IV)\n• UF\n• Município\n• Status de habilitação (ativo/inativo)",
+          "2.8_dados_estatisticos_e_comentarios": "GRANULARIDADE: Município, UF, Regiões, Brasil\nPERIODICIDADE DE ATUALIZAÇÃO: Mensal (competência de referência do CNES) / Anual (balanço)\nRESPONSABILIDADE GERENCIAL: CGSI/DATASUS/SEIDIGI/MS",
+          "2.9_literatura_relacionada": ""
+        },
+        "3_ficha_do_indicador_para_o_cientista_de_dados": {
+          "3.1_metodo_de_processamento_de_dados": "",
+          "3.2_metodo_de_processamento_analitico": "",
+          "3.3_metodo_de_apresentacao_de_dados": "",
+          "3.4_metodo_de_analise_matematica_e_estatistica": "",
+          "3.5_metodo_de_descoberta_de_conhecimento_em_bancos_de_dados_kdd": "",
+          "3.6_base_de_dados": ""
+        },
+        "4_apendice": {
+          "4.1_ver_tambem": "",
+          "4.2_ligacoes_externas": ""
+        }
+      }
+    },
+    {
+      "id_indicador": "SD.CNES.2",
+      "titulo": "Número de estabelecimentos com serviços de reabilitação intelectual",
+      "slug": "sd_cnes_2",
+      "estrutura": {
+        "1_introducao": {
+          "1.1_endereco_eletronico": "",
+          "1.2_objetivo": ""
+        },
+        "2_ficha_do_indicador": {
+          "2.1_conceituacao": "• Número de estabelecimentos de saúde cadastrados no CNES que oferecem serviços de reabilitação intelectual, em um local e período de referência.",
+          "2.2_interpretacao": "• A reabilitação intelectual é um componente essencial do cuidado de pessoas com SD.\n• A disponibilidade desses serviços no território determina o acesso efetivo da população com SD.",
+          "2.3_usos": "• Mapear a oferta de serviços de reabilitação intelectual no SUS.\n• Identificar desigualdades regionais na disponibilidade desses serviços.",
+          "2.4_limitacoes": "• O CNES pode ter subnotificação de serviços específicos de reabilitação intelectual.\n• A classificação dos serviços pode variar entre estabelecimentos.",
+          "2.5_fontes": "CNES – Cadastro Nacional de Estabelecimentos de Saúde (DATASUS/MS)",
+          "2.6_metodos_de_calculo": {
+            "formula": "Contagem de estabelecimentos com serviço de reabilitação intelectual ativo no CNES",
+            "numerador": "Número de CNPJ/CNES com serviço de reabilitação intelectual ativo",
+            "denominador": "Não se aplica",
+            "multiplicador": "Não se aplica; pode ser calculado por 100.000 habitantes"
+          },
+          "2.7_categorias_sugeridas_para_analise": "• UF\n• Município\n• Tipo de estabelecimento\n• Natureza jurídica",
+          "2.8_dados_estatisticos_e_comentarios": "GRANULARIDADE: Município, UF, Regiões, Brasil\nPERIODICIDADE DE ATUALIZAÇÃO: Mensal / Anual\nRESPONSABILIDADE GERENCIAL: CGSI/DATASUS/SEIDIGI/MS",
+          "2.9_literatura_relacionada": ""
+        },
+        "3_ficha_do_indicador_para_o_cientista_de_dados": {
+          "3.1_metodo_de_processamento_de_dados": "",
+          "3.2_metodo_de_processamento_analitico": "",
+          "3.3_metodo_de_apresentacao_de_dados": "",
+          "3.4_metodo_de_analise_matematica_e_estatistica": "",
+          "3.5_metodo_de_descoberta_de_conhecimento_em_bancos_de_dados_kdd": "",
+          "3.6_base_de_dados": ""
+        },
+        "4_apendice": {
+          "4.1_ver_tambem": "",
+          "4.2_ligacoes_externas": ""
+        }
+      }
+    },
+    {
+      "id_indicador": "SD.CNES.3",
+      "titulo": "Quantidade de profissionais especializados para atendimento de pessoas com síndrome de Down",
+      "slug": "sd_cnes_3",
+      "estrutura": {
+        "1_introducao": {
+          "1.1_endereco_eletronico": "",
+          "1.2_objetivo": ""
+        },
+        "2_ficha_do_indicador": {
+          "2.1_conceituacao": "• Número de profissionais de saúde cadastrados no CNES nas especialidades de fonoaudiologia, fisioterapia, terapia ocupacional, psicologia e genética médica, por Unidade da Federação, em um período de referência.",
+          "2.2_interpretacao": "• A disponibilidade de profissionais especializados é determinante para o acesso de pessoas com SD a serviços de reabilitação e acompanhamento clínico.\n• Déficit de geneticistas e fonoaudiólogos no SUS é uma barreira frequentemente identificada.",
+          "2.3_usos": "• Monitorar a disponibilidade de profissionais especializados para atendimento de pessoas com SD.\n• Subsidiar políticas de formação e distribuição de recursos humanos em saúde.",
+          "2.4_limitacoes": "• O CNES registra vínculos, não profissionais únicos; um profissional pode ter múltiplos vínculos.\n• Carga horária e disponibilidade efetiva podem diferir do registro.",
+          "2.5_fontes": "CNES – Cadastro Nacional de Estabelecimentos de Saúde (DATASUS/MS)",
+          "2.6_metodos_de_calculo": {
+            "formula": "Contagem de profissionais cadastrados no CNES por especialidade de interesse, por UF",
+            "numerador": "Número de vínculos ativos de profissionais nas especialidades de interesse no CNES",
+            "denominador": "Não se aplica; pode ser calculado por 100.000 habitantes",
+            "multiplicador": "Não se aplica"
+          },
+          "2.7_categorias_sugeridas_para_analise": "• Especialidade (fonoaudiologia, fisioterapia, TO, psicologia, genética médica)\n• UF\n• Natureza do vínculo\n• Tipo de estabelecimento",
+          "2.8_dados_estatisticos_e_comentarios": "GRANULARIDADE: Município, UF, Regiões, Brasil\nPERIODICIDADE DE ATUALIZAÇÃO: Mensal / Anual\nRESPONSABILIDADE GERENCIAL: CGSI/DATASUS/SEIDIGI/MS",
+          "2.9_literatura_relacionada": ""
+        },
+        "3_ficha_do_indicador_para_o_cientista_de_dados": {
+          "3.1_metodo_de_processamento_de_dados": "",
+          "3.2_metodo_de_processamento_analitico": "",
+          "3.3_metodo_de_apresentacao_de_dados": "",
+          "3.4_metodo_de_analise_matematica_e_estatistica": "",
+          "3.5_metodo_de_descoberta_de_conhecimento_em_bancos_de_dados_kdd": "",
+          "3.6_base_de_dados": ""
+        },
+        "4_apendice": {
+          "4.1_ver_tambem": "",
+          "4.2_ligacoes_externas": ""
+        }
+      }
+    },
+    {
+      "id_indicador": "SD.SINAN.1",
+      "titulo": "Notificações de violência contra pessoas com deficiência intelectual com síndrome de Down",
+      "slug": "sd_sinan_1",
+      "estrutura": {
+        "1_introducao": {
+          "1.1_endereco_eletronico": "",
+          "1.2_objetivo": ""
+        },
+        "2_ficha_do_indicador": {
+          "2.1_conceituacao": "• Número de notificações de violência registradas no SINAN cujo campo 'Tipo de deficiência' indica deficiência intelectual, em um local e ano de referência, estratificado para pessoas com síndrome de Down quando identificável.",
+          "2.2_interpretacao": "• Pessoas com deficiência intelectual, incluindo aquelas com SD, são especialmente vulneráveis a diferentes formas de violência.\n• O SINAN é o principal instrumento de vigilância epidemiológica de violências no Brasil.\n• A subnotificação é uma limitação estrutural importante nesse contexto.",
+          "2.3_usos": "• Monitorar a ocorrência de violências contra pessoas com deficiência intelectual e SD.\n• Subsidiar políticas de proteção a essa população vulnerável.\n• Identificar autores, locais e tipos de violência para direcionar intervenções.",
+          "2.4_limitacoes": "• Subnotificação expressiva: a maioria dos casos de violência contra pessoas com DI não é notificada.\n• O SINAN não identifica síndrome de Down especificamente; o campo indica apenas 'deficiência intelectual'.\n• A qualidade do preenchimento dos campos de deficiência pode ser variável entre serviços notificadores.",
+          "2.5_fontes": "SINAN – Sistema de Informação de Agravos de Notificação (DATASUS/MS)",
+          "2.6_metodos_de_calculo": {
+            "formula": "Somatório de notificações de violência com campo de deficiência intelectual = SIM",
+            "numerador": "Número de notificações de violência no SINAN com deficiência intelectual registrada",
+            "denominador": "Não se aplica (número absoluto); pode ser expresso por 100.000 habitantes com DI estimados",
+            "multiplicador": "Não se aplica"
+          },
+          "2.7_categorias_sugeridas_para_analise": "• Tipo de violência (física, psicológica/moral, sexual, tortura, negligência, institucional)\n• Faixa etária\n• Sexo\n• Autor da agressão\n• Local de ocorrência\n• UF",
+          "2.8_dados_estatisticos_e_comentarios": "GRANULARIDADE: Município, UF, Regiões, Brasil\nPERIODICIDADE DE ATUALIZAÇÃO: Anual\nRESPONSABILIDADE GERENCIAL: CGIAE/DAENT/SVSA/MS",
+          "2.9_literatura_relacionada": ""
+        },
+        "3_ficha_do_indicador_para_o_cientista_de_dados": {
+          "3.1_metodo_de_processamento_de_dados": "",
+          "3.2_metodo_de_processamento_analitico": "",
+          "3.3_metodo_de_apresentacao_de_dados": "",
+          "3.4_metodo_de_analise_matematica_e_estatistica": "",
+          "3.5_metodo_de_descoberta_de_conhecimento_em_bancos_de_dados_kdd": "",
+          "3.6_base_de_dados": ""
+        },
+        "4_apendice": {
+          "4.1_ver_tambem": "",
+          "4.2_ligacoes_externas": ""
+        }
+      }
+    },
+    {
+      "id_indicador": "SD.SIVEP.1",
+      "titulo": "Internações por SRAG em pessoas com síndrome de Down",
+      "slug": "sd_sivep_1",
+      "estrutura": {
+        "1_introducao": {
+          "1.1_endereco_eletronico": "",
+          "1.2_objetivo": ""
+        },
+        "2_ficha_do_indicador": {
+          "2.1_conceituacao": "• Número de casos de Síndrome Respiratória Aguda Grave (SRAG) hospitalizados com síndrome de Down registrada como comorbidade (campo SIND_DOWN = 1), em um local e ano de referência.",
+          "2.2_interpretacao": "• Pessoas com SD apresentam maior suscetibilidade a infecções respiratórias graves, relacionada à hipotonia, alterações imunológicas e cardiopatias associadas.\n• O monitoramento de SRAG em pessoas com SD é especialmente relevante durante epidemias de influenza, COVID-19 e outros vírus respiratórios.",
+          "2.3_usos": "• Monitorar a incidência e a gravidade de SRAG em pessoas com SD.\n• Subsidiar estratégias de vacinação e de manejo clínico prioritário dessa população.\n• Avaliar tendências sazonais e impacto de surtos respiratórios em pessoas com SD.",
+          "2.4_limitacoes": "• O campo SIND_DOWN refere-se à síndrome de Down como comorbidade; pode haver subnotificação.\n• O SIVEP-Gripe é um sistema de vigilância sentinela e hospitalar; não captura casos não hospitalizados.\n• A qualidade do preenchimento varia entre unidades de saúde sentinela e não sentinela.",
+          "2.5_fontes": "SIVEP-Gripe – Sistema de Vigilância Epidemiológica da Gripe (SVSA/MS)",
+          "2.6_metodos_de_calculo": {
+            "formula": "Somatório de casos de SRAG hospitalizado com SIND_DOWN = 1 e HOSPITAL = 1",
+            "numerador": "Número de registros no SIVEP-Gripe com SIND_DOWN = 1",
+            "denominador": "Não se aplica (número absoluto); taxa = (casos / população estimada com SD) × 100.000",
+            "multiplicador": "Não se aplica / 100.000"
+          },
+          "2.7_categorias_sugeridas_para_analise": "• Faixa etária\n• Sexo\n• UF de residência\n• Etiologia viral (influenza, SARS-CoV-2, outro)\n• Semana epidemiológica",
+          "2.8_dados_estatisticos_e_comentarios": "GRANULARIDADE: Município, UF, Regiões, Brasil\nPERIODICIDADE DE ATUALIZAÇÃO: Semanal / Anual\nRESPONSABILIDADE GERENCIAL: CGVRS/DAENT/SVSA/MS",
+          "2.9_literatura_relacionada": ""
+        },
+        "3_ficha_do_indicador_para_o_cientista_de_dados": {
+          "3.1_metodo_de_processamento_de_dados": "",
+          "3.2_metodo_de_processamento_analitico": "",
+          "3.3_metodo_de_apresentacao_de_dados": "",
+          "3.4_metodo_de_analise_matematica_e_estatistica": "",
+          "3.5_metodo_de_descoberta_de_conhecimento_em_bancos_de_dados_kdd": "",
+          "3.6_base_de_dados": ""
+        },
+        "4_apendice": {
+          "4.1_ver_tambem": "",
+          "4.2_ligacoes_externas": ""
+        }
+      }
+    },
+    {
+      "id_indicador": "SD.SIVEP.2",
+      "titulo": "Proporção de casos de SRAG com síndrome de Down internados em UTI ou com ventilação mecânica",
+      "slug": "sd_sivep_2",
+      "estrutura": {
+        "1_introducao": {
+          "1.1_endereco_eletronico": "",
+          "1.2_objetivo": ""
+        },
+        "2_ficha_do_indicador": {
+          "2.1_conceituacao": "• Proporção de casos de SRAG hospitalizado em pessoas com síndrome de Down (SIND_DOWN = 1) que evoluíram para internação em UTI ou necessitaram de ventilação mecânica, em um local e período de referência.",
+          "2.2_interpretacao": "• Indica a gravidade dos casos de SRAG em pessoas com SD.\n• Proporções elevadas de UTI e ventilação mecânica refletem a maior vulnerabilidade dessa população a formas graves de SRAG.",
+          "2.3_usos": "• Avaliar a gravidade dos quadros de SRAG em pessoas com SD.\n• Subsidiar protocolos de triagem e manejo precoce de infecções respiratórias em pessoas com SD.",
+          "2.4_limitacoes": "• Subnotificação de casos graves em unidades não sentinela.\n• Disponibilidade de UTI pode variar entre regiões, influenciando o indicador.",
+          "2.5_fontes": "SIVEP-Gripe – Sistema de Vigilância Epidemiológica da Gripe (SVSA/MS)",
+          "2.6_metodos_de_calculo": {
+            "formula": "(Nº de casos SRAG com SD em UTI ou com ventilação mecânica / Total de casos SRAG com SD hospitalizados) × 100",
+            "numerador": "Número de registros com SIND_DOWN = 1 e UTI = 1 ou SUPORT_VEN = 1 (não invasivo ou invasivo)",
+            "denominador": "Total de casos SRAG com SIND_DOWN = 1 e HOSPITAL = 1",
+            "multiplicador": "100"
+          },
+          "2.7_categorias_sugeridas_para_analise": "• UTI (sim/não)\n• Suporte ventilatório (tipo)\n• Faixa etária\n• Etiologia viral\n• UF",
+          "2.8_dados_estatisticos_e_comentarios": "GRANULARIDADE: UF, Regiões, Brasil\nPERIODICIDADE DE ATUALIZAÇÃO: Anual / por período epidêmico\nRESPONSABILIDADE GERENCIAL: CGVRS/DAENT/SVSA/MS",
+          "2.9_literatura_relacionada": ""
+        },
+        "3_ficha_do_indicador_para_o_cientista_de_dados": {
+          "3.1_metodo_de_processamento_de_dados": "",
+          "3.2_metodo_de_processamento_analitico": "",
+          "3.3_metodo_de_apresentacao_de_dados": "",
+          "3.4_metodo_de_analise_matematica_e_estatistica": "",
+          "3.5_metodo_de_descoberta_de_conhecimento_em_bancos_de_dados_kdd": "",
+          "3.6_base_de_dados": ""
+        },
+        "4_apendice": {
+          "4.1_ver_tambem": "",
+          "4.2_ligacoes_externas": ""
+        }
+      }
+    },
+    {
+      "id_indicador": "SD.SIVEP.3",
+      "titulo": "Proporção de óbitos por SRAG em pacientes com síndrome de Down",
+      "slug": "sd_sivep_3",
+      "estrutura": {
+        "1_introducao": {
+          "1.1_endereco_eletronico": "",
+          "1.2_objetivo": ""
+        },
+        "2_ficha_do_indicador": {
+          "2.1_conceituacao": "• Proporção de casos de SRAG hospitalizado em pessoas com síndrome de Down (SIND_DOWN = 1) que evoluíram para óbito, em um local e período de referência.",
+          "2.2_interpretacao": "• A letalidade de SRAG em pessoas com SD é superior à da população geral, em especial entre crianças pequenas e adultos com cardiopatias associadas.\n• O indicador permite comparar o risco de morte por SRAG entre pessoas com e sem SD.",
+          "2.3_usos": "• Monitorar a letalidade de SRAG em pessoas com SD.\n• Avaliar o impacto de intervenções (vacinação, antivirais) na redução da mortalidade por SRAG nessa população.",
+          "2.4_limitacoes": "• Casos com desfecho desconhecido (campo EVOLUCAO em branco) podem subestimar a letalidade.\n• A capacidade de resolução clínica varia entre serviços, influenciando o desfecho.",
+          "2.5_fontes": "SIVEP-Gripe – Sistema de Vigilância Epidemiológica da Gripe (SVSA/MS)",
+          "2.6_metodos_de_calculo": {
+            "formula": "(Nº de óbitos por SRAG com SD / Total de casos SRAG com SD hospitalizados) × 100",
+            "numerador": "Número de registros com SIND_DOWN = 1 e EVOLUCAO = 2 (óbito)",
+            "denominador": "Total de casos SRAG com SIND_DOWN = 1 hospitalizados (HOSPITAL = 1)",
+            "multiplicador": "100"
+          },
+          "2.7_categorias_sugeridas_para_analise": "• Faixa etária\n• Etiologia viral\n• Uso de UTI\n• Sexo\n• UF",
+          "2.8_dados_estatisticos_e_comentarios": "GRANULARIDADE: UF, Regiões, Brasil\nPERIODICIDADE DE ATUALIZAÇÃO: Anual / por período epidêmico\nRESPONSABILIDADE GERENCIAL: CGVRS/DAENT/SVSA/MS",
+          "2.9_literatura_relacionada": ""
+        },
+        "3_ficha_do_indicador_para_o_cientista_de_dados": {
+          "3.1_metodo_de_processamento_de_dados": "",
+          "3.2_metodo_de_processamento_analitico": "",
+          "3.3_metodo_de_apresentacao_de_dados": "",
+          "3.4_metodo_de_analise_matematica_e_estatistica": "",
+          "3.5_metodo_de_descoberta_de_conhecimento_em_bancos_de_dados_kdd": "",
+          "3.6_base_de_dados": ""
+        },
+        "4_apendice": {
+          "4.1_ver_tambem": "",
+          "4.2_ligacoes_externas": ""
+        }
+      }
+    },
+    {
+      "id_indicador": "SD.SIVEP.4",
+      "titulo": "Cobertura vacinal de influenza e COVID-19 em pacientes com síndrome de Down hospitalizados por SRAG",
+      "slug": "sd_sivep_4",
+      "estrutura": {
+        "1_introducao": {
+          "1.1_endereco_eletronico": "",
+          "1.2_objetivo": ""
+        },
+        "2_ficha_do_indicador": {
+          "2.1_conceituacao": "• Proporção de casos de SRAG hospitalizado em pessoas com síndrome de Down (SIND_DOWN = 1) que registraram vacinação prévia contra influenza e/ou COVID-19, em um local e período de referência.",
+          "2.2_interpretacao": "• A cobertura vacinal entre casos graves de SRAG em pessoas com SD é um proxy indireto do status vacinal dessa população.\n• Baixa cobertura vacinal pode indicar falhas nos programas de imunização para grupos prioritários.",
+          "2.3_usos": "• Monitorar a cobertura vacinal contra influenza e COVID-19 entre pessoas com SD hospitalizadas por SRAG.\n• Subsidiar campanhas de vacinação dirigidas a pessoas com SD e seus cuidadores.",
+          "2.4_limitacoes": "• O campo de vacinação é frequentemente não preenchido (missing), subestimando a cobertura real.\n• O indicador não substitui análises de cobertura vacinal baseadas no SI-PNI.",
+          "2.5_fontes": "SIVEP-Gripe – Sistema de Vigilância Epidemiológica da Gripe (SVSA/MS)",
+          "2.6_metodos_de_calculo": {
+            "formula": "(Nº de casos SRAG com SD e vacinação registrada / Total de casos SRAG com SD hospitalizados) × 100",
+            "numerador": "Registros com SIND_DOWN = 1 e campo de vacinação (VACINA_COV = 1 ou VACINA_FLU = 1)",
+            "denominador": "Total de casos SRAG com SIND_DOWN = 1 e HOSPITAL = 1",
+            "multiplicador": "100"
+          },
+          "2.7_categorias_sugeridas_para_analise": "• Tipo de vacina (influenza/COVID-19)\n• Faixa etária\n• UF\n• Etiologia viral",
+          "2.8_dados_estatisticos_e_comentarios": "GRANULARIDADE: UF, Regiões, Brasil\nPERIODICIDADE DE ATUALIZAÇÃO: Anual / por campanha de vacinação\nRESPONSABILIDADE GERENCIAL: CGVRS/DAENT/SVSA/MS",
+          "2.9_literatura_relacionada": ""
+        },
+        "3_ficha_do_indicador_para_o_cientista_de_dados": {
+          "3.1_metodo_de_processamento_de_dados": "",
+          "3.2_metodo_de_processamento_analitico": "",
+          "3.3_metodo_de_apresentacao_de_dados": "",
+          "3.4_metodo_de_analise_matematica_e_estatistica": "",
+          "3.5_metodo_de_descoberta_de_conhecimento_em_bancos_de_dados_kdd": "",
+          "3.6_base_de_dados": ""
+        },
+        "4_apendice": {
+          "4.1_ver_tambem": "",
+          "4.2_ligacoes_externas": ""
+        }
+      }
+    },
+    {
+      "id_indicador": "SD.SIVEP.5",
+      "titulo": "Distribuição temporal e geográfica dos casos de SRAG em pessoas com síndrome de Down",
+      "slug": "sd_sivep_5",
+      "estrutura": {
+        "1_introducao": {
+          "1.1_endereco_eletronico": "",
+          "1.2_objetivo": ""
+        },
+        "2_ficha_do_indicador": {
+          "2.1_conceituacao": "• Distribuição dos casos de SRAG hospitalizado em pessoas com síndrome de Down (SIND_DOWN = 1) segundo semana epidemiológica, etiologia viral e Unidade da Federação de residência, em um período de referência.",
+          "2.2_interpretacao": "• Permite identificar padrões sazonais, surtos e concentrações geográficas de SRAG em pessoas com SD.\n• A análise temporal e espacial é fundamental para a resposta oportuna a epidemias de vírus respiratórios nessa população.",
+          "2.3_usos": "• Monitorar a sazonalidade e a distribuição espacial da SRAG em pessoas com SD.\n• Subsidiar alertas epidemiológicos e medidas de resposta a surtos.",
+          "2.4_limitacoes": "• Atraso de notificação pode comprometer análises em tempo real.\n• Subnotificação em municípios sem unidade sentinela.",
+          "2.5_fontes": "SIVEP-Gripe – Sistema de Vigilância Epidemiológica da Gripe (SVSA/MS)",
+          "2.6_metodos_de_calculo": {
+            "formula": "Distribuição de frequência dos casos SRAG com SIND_DOWN = 1 por semana epidemiológica e UF",
+            "numerador": "Casos de SRAG com SIND_DOWN = 1 por unidade de tempo (semana epidemiológica) e espaço (UF/município)",
+            "denominador": "Não se aplica (análise descritiva de distribuição)",
+            "multiplicador": "Não se aplica"
+          },
+          "2.7_categorias_sugeridas_para_analise": "• Semana epidemiológica\n• Etiologia viral\n• UF\n• Faixa etária\n• Evolução (cura/óbito)",
+          "2.8_dados_estatisticos_e_comentarios": "GRANULARIDADE: Município, UF, Regiões, Brasil\nPERIODICIDADE DE ATUALIZAÇÃO: Semanal\nRESPONSABILIDADE GERENCIAL: CGVRS/DAENT/SVSA/MS",
+          "2.9_literatura_relacionada": ""
+        },
+        "3_ficha_do_indicador_para_o_cientista_de_dados": {
+          "3.1_metodo_de_processamento_de_dados": "",
+          "3.2_metodo_de_processamento_analitico": "",
+          "3.3_metodo_de_apresentacao_de_dados": "",
+          "3.4_metodo_de_analise_matematica_e_estatistica": "",
+          "3.5_metodo_de_descoberta_de_conhecimento_em_bancos_de_dados_kdd": "",
+          "3.6_base_de_dados": ""
+        },
+        "4_apendice": {
+          "4.1_ver_tambem": "",
+          "4.2_ligacoes_externas": ""
+        }
+      }
+    }
+  ]
+}
